@@ -10,16 +10,31 @@ Suppose a company currently requires employees to manually purchase order sheets
 
 **Azure AI Document Intelligence** is an Azure AI service that enables users to build automated data processing software. This software can extract text, key/value pairs, and tables from form documents using optical character recognition (OCR). Azure AI Document Intelligence has pre-built models for recognizing invoices, receipts, and business cards. The service also provides the capability to train custom models. In this exercise, we will focus on building custom models.
 
-## Clone the repository for this course
+## Clone the repo into your Azure Cloud Shell
 
-If you have not already done so, you must clone the code repository for this course:
+1. In the [Azure portal](https://portal.azure.com?azure-portal=true), select the **[>_]** (*Cloud Shell*) button at the top of the page to the right of the search box. A Cloud Shell pane will open at the bottom of the portal.
 
-1. Start Visual Studio Code.
-2. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/AI-102-AIEngineer` repository to a local folder (it doesn't matter which folder).
-3. When the repository has been cloned, open the folder in Visual Studio Code.
-4. Wait while additional files are installed to support the C# code projects in the repo.
+    ![Screenshot of starting Cloud Shell by clicking on the icon to the right of the top search box.](../media/cloudshell-launch-portal.png#lightbox)
 
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
+1. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**. If you don't see this option, skip the step.
+
+1. If you're prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
+
+1. Once the terminal starts, run the following commands to download a copy of the repo into your Cloud Shell:
+
+    ```bash
+    rm -r doc-intelligence -f
+    git clone https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence doc-intelligence
+    ```
+  
+    > **TIP**
+    > If you recently used this command in another lab to clone the *doc-intelligence* repository, you can skip this step.
+ 
+1. The files have been downloaded into a folder called **doc-intelligence**. Let's use the Cloud Shell Code editor to open the appropriate folder by running:
+
+    ```bash
+    code doc-intelligence/Labfiles/02-custom-document-intelligence
+    ```
 
 ## Create a Azure AI Document Intelligence resource
 
@@ -40,47 +55,45 @@ To use the Azure AI Document Intelligence service, you need a Azure AI Document 
 
 ## Gather documents for training
 
-![An image of an invoice.](../21-custom-form/sample-forms/Form_1.jpg)  
+![An image of an invoice.](../02-custom-document-intelligence/sample-forms/Form_1.jpg)  
 
-You'll use the sample forms from the **21-custom-form/sample-forms** folder in this repo, which contain all the files you'll need to train and test a model.
+You'll use the sample forms from the **02-custom-document-intelligence/sample-forms** folder in this repo, which contain all the files you'll need to train and test a model.
 
-1. In Visual Studio Code, in the **21-custom-form** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg** in the folder.
+1. In Cloud Shell Code, in the **02-custom-document-intelligence** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg** in the folder.
 
     You will use the **.jpg** files to train your model.  
 
     The **.json** files have been generated for you and contain label information. The files will be uploaded into your blob storage container alongside the forms. 
 
-2. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
+1. Return to the Azure portal at [https://portal.azure.com](https://portal.azure.com).
 
-3. View the **Resource group** in which you created the Document Intelligence resource previously.
+1. View the **Resource group** in which you created the Document Intelligence resource previously.
 
-4. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group** name in subsequent steps.
+1. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group** name in subsequent steps.
 
 ![An example of the resource group page.](./images/resource_group_variables.png)
 
-5. In Visual Studio Code, in the Explorer pane, right-click the the **21-custom-form** folder and select **Open in Integrated Terminal**.
+1. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
 
-6. In the terminal pane, enter the following command to establish an authenticated connection to your Azure subscription.
-    
 ```
 az login --output none
 ```
 
-7. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
+1. When prompted, sign into your Azure subscription. Then return to the Cloud shell terminal and wait for the sign-in process to complete.
 
-8. Run the following command to list Azure locations.
+1. Run the following command to list Azure locations.
 
 ```
 az account list-locations -o table
 ```
 
-9. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
+1. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
 
     > **Important**: Record the **Name** value and use it in Step 12.
 
-10. In the Explorer pane, in the **21-custom-form** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the other Azure resources you need.
+1. In the Code window, in the **02-custom-document-intelligence** folder, select **setup.cmd**. You will use this batch script to run the Azure command line interface (CLI) commands required to create the other Azure resources you need.
 
-11. In the **setup.cmd** script, review the **rem** commands. These comments outline the program the script will run. The program will: 
+1. In the **setup.cmd** script, review the **rem** commands. These comments outline the program the script will run. The program will: 
     - Create a storage account in your Azure resource group
     - Upload files from your local _sampleforms_ folder to a container called _sampleforms_ in the storage account
     - Print a Shared Access Signature URI
@@ -90,7 +103,7 @@ Then **save** your changes.
 
     Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
 
-13. In the terminal for the **21-custom-form** folder, enter the following command to run the script:
+13. In the terminal for the **02-custom-document-intelligence** folder, enter the following command to run the script:
 
 ```
 setup
@@ -100,19 +113,19 @@ setup
 
 > **Important**: Before moving on, paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in Visual Studio Code).
 
-15. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Browser (preview)**. Then in Storage Browser, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **21-custom-form/sample-forms** folder.
+15. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Browser (preview)**. Then in Storage Browser, expand **BLOB CONTAINERS** and select the **sampleforms** container to verify that the files have been uploaded from your local **02-custom-document-intelligence/sample-forms** folder.
 
 ## Train a model using the Document Intelligence SDK
 
 Now you will train a model using the **.jpg** and **.json** files.
 
-1. In Visual Studio Code, in the **21-custom-form/sample-forms** folder, open **fields.json** and review the JSON document it contains. This file defines the fields that you will train a model to extract from the forms.
+1. In Visual Studio Code, in the **02-custom-document-intelligence/sample-forms** folder, open **fields.json** and review the JSON document it contains. This file defines the fields that you will train a model to extract from the forms.
 2. Open **Form_1.jpg.labels.json** and review the JSON it contains. This file identifies the location and values for named fields in the **Form_1.jpg** training document.
 3. Open **Form_1.jpg.ocr.json** and review the JSON it contains. This file contains a JSOn representation of the text layout of **Form_1.jpg**, including the location of all text areas found in the form.
 
     *The field information files have been provided for you in this exercise. For your own projects, you can create these files using the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio). As you use the tool, your field information files are automatically created and stored in your connected storage account.*
 
-4. In Visual Studio Code, in the **21-custom-form** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
+4. In Visual Studio Code, in the **02-custom-document-intelligence** folder, expand the **C-Sharp** or **Python** folder depending on your language preference.
 5. Right-click the **train-model** folder and open an integrated terminal.
 
 6. Install the Document Intelligence package by running the appropriate command for your language preference:
@@ -172,7 +185,7 @@ python train-model.py
 
 ## Test your custom Document Intelligence model 
 
-1. In the **21-custom-form** folder, in the subfolder for your preferred language (**C-Sharp** or **Python**), expand the **test-model** folder.
+1. In the **02-custom-document-intelligence** folder, in the subfolder for your preferred language (**C-Sharp** or **Python**), expand the **test-model** folder.
 
 2. Right-click the **test-model** folder and select **open an integrated terminal**.
 
@@ -181,13 +194,13 @@ python train-model.py
 **C#**
 
 ```
-dotnet add package Azure.AI.FormRecognizer --version 3.0.0 
+dotnet add package Azure.AI.FormRecognizer --version 3.1.0 
 ```
 
 **Python**
 
 ```
-pip install azure-ai-formrecognizer==3.0.0
+pip install azure-ai-formrecognizer==3.1.0
 ```
 
 *This isn't strictly necessary if you previously used pip to install the package into Python environment; but it does no harm to ensure it's installed!*
@@ -230,8 +243,8 @@ dotnet run
 ```
 python test-model.py
 ```
-    
-8. View the output and observe how the output for the model provides field names like "CompanyPhoneNumber" and "DatedAs".   
+
+8. View the output and observe how the output for the model provides field names like "CompanyPhoneNumber" and "DatedAs".
 
 ## More information
 

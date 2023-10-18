@@ -48,7 +48,7 @@ We'll use Cloud Shell in your Azure subscription to host a console application t
 
 1. In the Azure portal select the **[>_]** (Cloud Shell) button at the top of the page to the right of the search box. This opens a Cloud Shell pane at the bottom of the portal.
 
-    ![Screenshot showing how to open Cloud Shell in the Azure portal.](../media/open-cloud-shell.png#lightbox)
+    ![Screenshot showing how to open Cloud Shell in the Azure portal.](../media/cloudshell-launch-portal.png#lightbox)
 
 1. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**. If you do not see this option, skip the step.
 1. If you are prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
