@@ -1,0 +1,18 @@
+{
+  "version": 2,
+  "dgSpecHash": "sB4s8crAfV/vfSkILnSHWQ456u0qcxKahaIyRbF4HbVDL0YKkD8IhHMX4fgdW5EzXnHiX0fWcnUfmUqD+rZgLQ==",
+  "success": true,
+  "projectFilePath": "/home/ajm/code/FormsRec/invoicereader/invoicereader.csproj",
+  "expectedPackageFiles": [
+    "/home/ajm/.nuget/packages/azure.ai.formrecognizer/4.0.0-beta.3/azure.ai.formrecognizer.4.0.0-beta.3.nupkg.sha512",
+    "/home/ajm/.nuget/packages/azure.core/1.22.0/azure.core.1.22.0.nupkg.sha512",
+    "/home/ajm/.nuget/packages/microsoft.bcl.asyncinterfaces/1.1.1/microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
+    "/home/ajm/.nuget/packages/system.diagnostics.diagnosticsource/4.6.0/system.diagnostics.diagnosticsource.4.6.0.nupkg.sha512",
+    "/home/ajm/.nuget/packages/system.memory.data/1.0.2/system.memory.data.1.0.2.nupkg.sha512",
+    "/home/ajm/.nuget/packages/system.numerics.vectors/4.5.0/system.numerics.vectors.4.5.0.nupkg.sha512",
+    "/home/ajm/.nuget/packages/system.text.encodings.web/4.7.2/system.text.encodings.web.4.7.2.nupkg.sha512",
+    "/home/ajm/.nuget/packages/system.text.json/4.7.2/system.text.json.4.7.2.nupkg.sha512",
+    "/home/ajm/.nuget/packages/system.threading.tasks.extensions/4.5.4/system.threading.tasks.extensions.4.5.4.nupkg.sha512"
+  ],
+  "logs": []
+}
