@@ -9,10 +9,14 @@
           "System.Text.Json": "4.7.2"
         },
         "compile": {
-          "lib/netstandard2.0/Azure.AI.FormRecognizer.dll": {}
+          "lib/netstandard2.0/Azure.AI.FormRecognizer.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/Azure.AI.FormRecognizer.dll": {}
+          "lib/netstandard2.0/Azure.AI.FormRecognizer.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Azure.Core/1.22.0": {
@@ -27,10 +31,14 @@
           "System.Threading.Tasks.Extensions": "4.5.4"
         },
         "compile": {
-          "lib/net5.0/Azure.Core.dll": {}
+          "lib/net5.0/Azure.Core.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/net5.0/Azure.Core.dll": {}
+          "lib/net5.0/Azure.Core.dll": {
+            "related": ".xml"
+          }
         }
       },
       "Microsoft.Bcl.AsyncInterfaces/1.1.1": {
@@ -39,16 +47,22 @@
           "ref/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {}
         },
         "runtime": {
-          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {}
+          "lib/netstandard2.1/Microsoft.Bcl.AsyncInterfaces.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Diagnostics.DiagnosticSource/4.6.0": {
         "type": "package",
         "compile": {
-          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {}
+          "lib/netstandard1.3/System.Diagnostics.DiagnosticSource.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Memory.Data/1.0.2": {
@@ -58,10 +72,14 @@
           "System.Text.Json": "4.6.0"
         },
         "compile": {
-          "lib/netstandard2.0/System.Memory.Data.dll": {}
+          "lib/netstandard2.0/System.Memory.Data.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.0/System.Memory.Data.dll": {}
+          "lib/netstandard2.0/System.Memory.Data.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Numerics.Vectors/4.5.0": {
@@ -76,19 +94,27 @@
       "System.Text.Encodings.Web/4.7.2": {
         "type": "package",
         "compile": {
-          "lib/netstandard2.1/System.Text.Encodings.Web.dll": {}
+          "lib/netstandard2.1/System.Text.Encodings.Web.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netstandard2.1/System.Text.Encodings.Web.dll": {}
+          "lib/netstandard2.1/System.Text.Encodings.Web.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Text.Json/4.7.2": {
         "type": "package",
         "compile": {
-          "lib/netcoreapp3.0/System.Text.Json.dll": {}
+          "lib/netcoreapp3.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
         },
         "runtime": {
-          "lib/netcoreapp3.0/System.Text.Json.dll": {}
+          "lib/netcoreapp3.0/System.Text.Json.dll": {
+            "related": ".xml"
+          }
         }
       },
       "System.Threading.Tasks.Extensions/4.5.4": {
@@ -346,24 +372,32 @@
     ]
   },
   "packageFolders": {
-    "/home/ajm/.nuget/packages/": {}
+    "C:\\Users\\calopez\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/ajm/code/FormsRec/invoicereader/invoicereader.csproj",
+      "projectUniqueName": "C:\\WWL\\learn-pr\\mslearn-ai-document-intelligence\\Labfiles\\01-prebuild-models\\starter\\invoicereader\\invoicereader.csproj",
       "projectName": "invoicereader",
-      "projectPath": "/home/ajm/code/FormsRec/invoicereader/invoicereader.csproj",
-      "packagesPath": "/home/ajm/.nuget/packages/",
-      "outputPath": "/home/ajm/code/FormsRec/invoicereader/obj/",
+      "projectPath": "C:\\WWL\\learn-pr\\mslearn-ai-document-intelligence\\Labfiles\\01-prebuild-models\\starter\\invoicereader\\invoicereader.csproj",
+      "packagesPath": "C:\\Users\\calopez\\.nuget\\packages\\",
+      "outputPath": "C:\\WWL\\learn-pr\\mslearn-ai-document-intelligence\\Labfiles\\01-prebuild-models\\starter\\invoicereader\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/home/ajm/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\calopez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -393,7 +427,8 @@
           "net47",
           "net471",
           "net472",
-          "net48"
+          "net48",
+          "net481"
         ],
         "assetTargetFallback": true,
         "warn": true,
@@ -402,7 +437,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/6.0.300/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
       }
     }
   }

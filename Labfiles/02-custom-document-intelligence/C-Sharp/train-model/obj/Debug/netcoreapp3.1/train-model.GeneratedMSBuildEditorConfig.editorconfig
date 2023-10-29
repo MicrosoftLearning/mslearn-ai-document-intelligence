@@ -1,0 +1,3 @@
+is_global = true
+build_property.RootNamespace = train_model
+build_property.ProjectDir = C:\WWL\learn-pr\mslearn-ai-document-intelligence\Labfiles\02-custom-document-intelligence\C-Sharp\train-model\
