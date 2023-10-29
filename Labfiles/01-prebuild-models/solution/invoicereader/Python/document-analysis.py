@@ -1,18 +1,17 @@
-import os
-
 from azure.core.credentials import AzureKeyCredential
 from azure.ai.formrecognizer import DocumentAnalysisClient
 
-endpoint = os.environ["https://calopezai102s.cognitiveservices.azure.com/"]
-key = os.environ["325a52aec3f6490c90e76535b43237f3"]
+endpoint = "Endpoint URL"
+key = "API Key"
 
 document_analysis_client = DocumentAnalysisClient(
     endpoint=endpoint, credential=AzureKeyCredential(key)
 )
-with open("https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf", "rb") as f:
-    poller = document_analysis_client.begin_analyze_document_from_url(
-        "prebuilt-receipt", document=f, locale="en-US"
-    )
+
+poller = document_analysis_client.begin_analyze_document_from_url(
+    "prebuilt-receipt", "https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf", locale="en-US"
+)
+
 receipts = poller.result()
 
 for idx, receipt in enumerate(receipts.documents):

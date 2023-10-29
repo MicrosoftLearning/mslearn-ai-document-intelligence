@@ -4,6 +4,7 @@ using Azure.AI.FormRecognizer.DocumentAnalysis;
 // Store connection information
 string endpoint = "<Endpoint URL>";
 string apiKey = "<API Key>";
+
 Uri fileUri = new Uri("https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf");
 
 Console.WriteLine("Connecting to Forms Recognizer at: {0}", endpoint);

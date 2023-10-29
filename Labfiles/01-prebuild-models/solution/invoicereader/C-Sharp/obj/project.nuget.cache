@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "H7Il4LuKySR/5J5N/umxkiP1cGylPsY1fneRUQjMZ4MTsNXL3/ZiKo+G37mJNu4thfMHvVCk1uCr/v/3c6oGAg==",
+  "dgSpecHash": "u7B2ttlQYzXiI8VlS+CIgha47atjiJ8gzWTMQ0od2m6bQ1Z7w9D7l8+YN9WMa6eqfaXw1N0bQ+2l6nqpgZX7ww==",
   "success": true,
   "projectFilePath": "C:\\WWL\\learn-pr\\mslearn-ai-document-intelligence\\Labfiles\\01-prebuild-models\\solution\\invoicereader\\C-Sharp\\invoicereader.csproj",
   "expectedPackageFiles": [
