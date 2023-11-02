@@ -78,9 +78,9 @@ You'll use the sample forms from the **02-custom-document-intelligence/sample-fo
 
 1. In the terminal pane, run the following command to list Azure locations.
 
-```
-az account list-locations -o table
-```
+    ```
+    az account list-locations -o table
+    ```
 
 1. In the output, find the **Name** value that corresponds with the location of your resource group (for example, for *East US* the corresponding name is *eastus*).
 
@@ -100,9 +100,9 @@ Then **save** your changes.
 
 13. In the terminal for the **02-custom-document-intelligence** folder, enter the following command to run the script:
 
-```
-sh setup.sh
-```
+    ```
+    sh setup.sh
+    ```
 
 14. When the script completes, review the displayed output and note your Azure resource's SAS URI.
 
