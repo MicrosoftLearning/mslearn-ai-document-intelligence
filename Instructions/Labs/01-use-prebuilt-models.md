@@ -217,8 +217,8 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
             print(f"\nVendor Name: {vendor_name.value}, with confidence {vendor_name.confidence}.")
     ```
 
-> [!NOTE]
-> You've added code to display the vendor name. The starter project also includes code to display the *customer name* and *invoice total*.
+    > [!NOTE]
+    > You've added code to display the vendor name. The starter project also includes code to display the *customer name* and *invoice total*.
 
 1. To save your code and exit the editor, press <kbd>CTRL + S</kbd> and then press <kbd>CTRL + Q</kbd>.
 
