@@ -139,7 +139,7 @@ document_analysis_client = DocumentAnalysisClient(
 
 **C#**
 ```csharp
-AnalyzeDocumentOperation operation = await client.StartAnalyzeDocumentFromUriAsync("prebuilt-invoice", fileUri);
+AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-invoice", fileUri);
 await operation.WaitForCompletionAsync();
 ```
 
@@ -155,16 +155,17 @@ poller = document_analysis_client.begin_analyze_document_from_url(
 **C#**
 ```csharp
 AnalyzeResult result = operation.Value;
-AnalyzedDocument invoice = result.Documents[0];
 
-if (invoice.Fields.TryGetValue("VendorName", out DocumentField vendorNameField))
+foreach (AnalyzedDocument invoice in result.Documents)
 {
-    if (vendorNameField.ValueType == DocumentFieldType.String)
+    if (invoice.Fields.TryGetValue("VendorName", out DocumentField? vendorNameField))
     {
-        string vendorName = vendorNameField.AsString();
-        Console.WriteLine($"Vendor Name: '{vendorName}', with confidence {vendorNameField.Confidence}.");
+        if (vendorNameField.FieldType == DocumentFieldType.String)
+        {
+            string vendorName = vendorNameField.Value.AsString();
+            Console.WriteLine($"Vendor Name: '{vendorName}', with confidence {vendorNameField.Confidence}.");
+        }
     }
-}
 ```
 
 **Python**
@@ -203,4 +204,3 @@ python document-analysis.py
 ```
 
 The program displays the vendor name, customer name, and invoice total with confidence levels. Compare the values it reports with the sample invoice you opened at the start of this section.
-

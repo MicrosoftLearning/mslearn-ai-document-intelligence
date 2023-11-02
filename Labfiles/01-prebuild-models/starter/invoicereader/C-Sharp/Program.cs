@@ -4,9 +4,10 @@ using Azure.AI.FormRecognizer.DocumentAnalysis;
 // Store connection information
 string endpoint = "<Endpoint URL>";
 string apiKey = "<API Key>";
+
 Uri fileUri = new Uri("https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf");
 
-Console.WriteLine("Connecting to Forms Recognizer at: {0}", endpoint);
+Console.WriteLine("\nConnecting to Forms Recognizer at: {0}", endpoint);
 Console.WriteLine("Analyzing invoice at: {0}", fileUri.ToString());
 
 // Create the client
@@ -17,22 +18,24 @@ Console.WriteLine("Analyzing invoice at: {0}", fileUri.ToString());
 
 
 
-if (invoice.Fields.TryGetValue("CustomerName", out DocumentField customerNameField))
-{
-    if (customerNameField.ValueType == DocumentFieldType.String)
+
+
+    if (invoice.Fields.TryGetValue("CustomerName", out DocumentField? customerNameField))
     {
-        string customerName = customerNameField.AsString();
-        Console.WriteLine($"Customer Name: '{customerName}', with confidence {customerNameField.Confidence}.");
+        if (customerNameField.FieldType == DocumentFieldType.String)
+        {
+            string customerName = customerNameField.Value.AsString();
+            Console.WriteLine($"Customer Name: '{customerName}', with confidence {customerNameField.Confidence}.");
+        }
+    }
+
+    if (invoice.Fields.TryGetValue("InvoiceTotal", out DocumentField? invoiceTotalField))
+    {
+        if (invoiceTotalField.FieldType == DocumentFieldType.Currency)
+        {
+            CurrencyValue invoiceTotal = invoiceTotalField.Value.AsCurrency();
+            Console.WriteLine($"Invoice Total: '{invoiceTotal.Symbol}{invoiceTotal.Amount}', with confidence {invoiceTotalField.Confidence}.");
+        }
     }
 }
-
-if (invoice.Fields.TryGetValue("InvoiceTotal", out DocumentField invoiceTotalField))
-{
-    if (invoiceTotalField.ValueType == DocumentFieldType.Currency)
-    {
-        CurrencyValue invoiceTotal = invoiceTotalField.AsCurrency();
-        Console.WriteLine($"Invoice Total: '{invoiceTotal.Symbol}{invoiceTotal.Amount}', with confidence {invoiceTotalField.Confidence}.");
-    }
-}
-
-Console.WriteLine("Analysis complete.");
+Console.WriteLine("\nAnalysis complete.\n");

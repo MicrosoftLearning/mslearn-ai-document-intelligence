@@ -1,15 +1,16 @@
 {
   "version": 2,
-  "dgSpecHash": "u7B2ttlQYzXiI8VlS+CIgha47atjiJ8gzWTMQ0od2m6bQ1Z7w9D7l8+YN9WMa6eqfaXw1N0bQ+2l6nqpgZX7ww==",
+  "dgSpecHash": "qDOba+kWOR3LjJFdUfmRVNUiwyWCVzqPFHWuCRWOrDkguIMse+WgBB2O62BjlvMUfprLmct7ZniG1aI+UbvnEQ==",
   "success": true,
   "projectFilePath": "C:\\WWL\\learn-pr\\mslearn-ai-document-intelligence\\Labfiles\\01-prebuild-models\\solution\\invoicereader\\C-Sharp\\invoicereader.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\calopez\\.nuget\\packages\\azure.ai.formrecognizer\\4.0.0-beta.3\\azure.ai.formrecognizer.4.0.0-beta.3.nupkg.sha512",
-    "C:\\Users\\calopez\\.nuget\\packages\\azure.core\\1.22.0\\azure.core.1.22.0.nupkg.sha512",
+    "C:\\Users\\calopez\\.nuget\\packages\\azure.ai.formrecognizer\\4.1.0\\azure.ai.formrecognizer.4.1.0.nupkg.sha512",
+    "C:\\Users\\calopez\\.nuget\\packages\\azure.core\\1.34.0\\azure.core.1.34.0.nupkg.sha512",
     "C:\\Users\\calopez\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\1.1.1\\microsoft.bcl.asyncinterfaces.1.1.1.nupkg.sha512",
-    "C:\\Users\\calopez\\.nuget\\packages\\system.diagnostics.diagnosticsource\\4.6.0\\system.diagnostics.diagnosticsource.4.6.0.nupkg.sha512",
+    "C:\\Users\\calopez\\.nuget\\packages\\system.diagnostics.diagnosticsource\\6.0.1\\system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
     "C:\\Users\\calopez\\.nuget\\packages\\system.memory.data\\1.0.2\\system.memory.data.1.0.2.nupkg.sha512",
     "C:\\Users\\calopez\\.nuget\\packages\\system.numerics.vectors\\4.5.0\\system.numerics.vectors.4.5.0.nupkg.sha512",
+    "C:\\Users\\calopez\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Users\\calopez\\.nuget\\packages\\system.text.encodings.web\\4.7.2\\system.text.encodings.web.4.7.2.nupkg.sha512",
     "C:\\Users\\calopez\\.nuget\\packages\\system.text.json\\4.7.2\\system.text.json.4.7.2.nupkg.sha512",
     "C:\\Users\\calopez\\.nuget\\packages\\system.threading.tasks.extensions\\4.5.4\\system.threading.tasks.extensions.4.5.4.nupkg.sha512"

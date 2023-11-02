@@ -15,7 +15,7 @@ var cred = new AzureKeyCredential(apiKey);
 var client = new DocumentAnalysisClient(new Uri(endpoint), cred);
 
 // Analyze the invoice
-AnalyzeDocumentOperation operation = await client.StartAnalyzeDocumentFromUriAsync("prebuilt-invoice", fileUri);
+AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-invoice", fileUri);
 await operation.WaitForCompletionAsync();
 
 // Display invoice information to the user
@@ -23,29 +23,29 @@ AnalyzeResult result = operation.Value;
 
 foreach (AnalyzedDocument invoice in result.Documents)
 {
-    if (invoice.Fields.TryGetValue("\nVendorName", out DocumentField vendorNameField))
+    if (invoice.Fields.TryGetValue("VendorName", out DocumentField? vendorNameField))
     {
-        if (vendorNameField.ValueType == DocumentFieldType.String)
+        if (vendorNameField.FieldType == DocumentFieldType.String)
         {
-            string vendorName = vendorNameField.AsString();
+            string vendorName = vendorNameField.Value.AsString();
             Console.WriteLine($"Vendor Name: '{vendorName}', with confidence {vendorNameField.Confidence}.");
         }
     }
 
-    if (invoice.Fields.TryGetValue("CustomerName", out DocumentField customerNameField))
+    if (invoice.Fields.TryGetValue("CustomerName", out DocumentField? customerNameField))
     {
-        if (customerNameField.ValueType == DocumentFieldType.String)
+        if (customerNameField.FieldType == DocumentFieldType.String)
         {
-            string customerName = customerNameField.AsString();
+            string customerName = customerNameField.Value.AsString();
             Console.WriteLine($"Customer Name: '{customerName}', with confidence {customerNameField.Confidence}.");
         }
     }
 
-    if (invoice.Fields.TryGetValue("InvoiceTotal", out DocumentField invoiceTotalField))
+    if (invoice.Fields.TryGetValue("InvoiceTotal", out DocumentField? invoiceTotalField))
     {
-        if (invoiceTotalField.ValueType == DocumentFieldType.Currency)
+        if (invoiceTotalField.FieldType == DocumentFieldType.Currency)
         {
-            CurrencyValue invoiceTotal = invoiceTotalField.AsCurrency();
+            CurrencyValue invoiceTotal = invoiceTotalField.Value.AsCurrency();
             Console.WriteLine($"Invoice Total: '{invoiceTotal.Symbol}{invoiceTotal.Amount}', with confidence {invoiceTotalField.Confidence}.");
         }
     }

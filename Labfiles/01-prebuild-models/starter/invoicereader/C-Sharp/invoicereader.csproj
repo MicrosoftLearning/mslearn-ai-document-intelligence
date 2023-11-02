@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Azure.AI.FormRecognizer" Version="4.0.0-beta.3" />
+    <PackageReference Include="Azure.AI.FormRecognizer" Version="4.1.0" />
   </ItemGroup>
 
 </Project>

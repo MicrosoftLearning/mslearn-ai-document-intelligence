@@ -1,1 +1,0 @@
-Exercise starting files.
