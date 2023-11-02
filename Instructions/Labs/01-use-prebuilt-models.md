@@ -82,14 +82,14 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
 
 1. Change to the starter directory and then start the code editor:
 
-### C#
+**C#**
 
 ```bash
 cd doc-intelligence/01-prebuilt-models/starter/invoicereader/C-Sharp
 code Program.cs
 ```
 
-### Python
+**Python**
 
 ```bash
 cd doc-intelligence/01-prebuilt-models/starter/invoicereader/Pyhton
@@ -99,13 +99,13 @@ code document-analysis.py
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
 1. In the Cloud Shell code editor, in the list of files on the left, locate this line and replace `<Endpoint URL>` with the string you just copied:
 
-### C#
+**C#**
 
 ```csharp
 string endpoint = "<Endpoint URL>";
 ```
 
-### Python
+**Python**
 
 ```python
 endpoint = "Endpoint URL"
@@ -114,12 +114,12 @@ endpoint = "Endpoint URL"
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
 1. In the Cloud Shell code editor, locate this line and replace `<API Key>` with the string you just copied:
 
-### C#
+**C#**
 
 ```csharp
 string apiKey = "<API Key>";
 ```
-### Python
+**Python**
 
 ```python
 key = "API Key"
@@ -127,14 +127,14 @@ key = "API Key"
 
 1. Locate the comment `Create the client`. Following that, on new lines, enter the following code:
 
-### C#
+**C#**
 
 ```csharp
 var cred = new AzureKeyCredential(apiKey);
 var client = new DocumentAnalysisClient(new Uri(endpoint), cred);
 ```
 
-### Python
+**Python**
 
 ```python
 document_analysis_client = DocumentAnalysisClient(
@@ -144,14 +144,14 @@ document_analysis_client = DocumentAnalysisClient(
 
 1. Locate the comment `Analyze the invoice`. Following that, on new lines, enter the following code:
 
-### C#
+**C#**
 
 ```csharp
 AnalyzeDocumentOperation operation = await client.StartAnalyzeDocumentFromUriAsync("prebuilt-invoice", fileUri);
 await operation.WaitForCompletionAsync();
 ```
 
-### Python
+**Python**
 
 ```python
 poller = document_analysis_client.begin_analyze_document_from_url(
@@ -161,7 +161,7 @@ poller = document_analysis_client.begin_analyze_document_from_url(
 
 1. Locate the comment `Display invoice information to the user`. Following that, on news lines, enter the following code:
 
-### C#
+**C#**
 
 ```csharp
 AnalyzeResult result = operation.Value;
@@ -177,7 +177,7 @@ if (invoice.Fields.TryGetValue("VendorName", out DocumentField vendorNameField))
 }
 ```
 
-### Python
+**Python**
 
 ```python
 receipts = poller.result()
@@ -196,7 +196,7 @@ for idx, receipt in enumerate(receipts.documents):
 
 1. *For C# only*, to build your project, enter this command:
 
-### C#
+**C#**
 
 ```bash
 dotnet build
@@ -204,13 +204,13 @@ dotnet build
 
 1. To run your code, enter this command:
 
-### C#
+**C#**
 
 ```bash
 dotnet run
 ```
 
-### Python
+**Python**
 
 ```bash
 python document-analysis.py
