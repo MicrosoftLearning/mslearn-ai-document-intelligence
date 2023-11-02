@@ -58,7 +58,7 @@ To use the Azure AI Document Intelligence service, you need a Azure AI Document 
 
 ## Gather documents for training
 
-![An image of an invoice.](../02-custom-document-intelligence/sample-forms/Form_1.jpg)  
+![An image of an invoice.](../media/Form_1.jpg)  
 
 You'll use the sample forms from the **02-custom-document-intelligence/sample-forms** folder in this repo, which contain all the files you'll need to train and test a model.
 
@@ -74,7 +74,7 @@ You'll use the sample forms from the **02-custom-document-intelligence/sample-fo
 
 1. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group** name in subsequent steps.
 
-![An example of the resource group page.](./images/resource_group_variables.png)
+![An example of the resource group page.](../media/resource_group_variables.png)
 
 1. In the terminal pane, run the following command to list Azure locations.
 
@@ -135,17 +135,18 @@ Now you will train the model using the files uploaded to the storage account.
 
 1. Install the Document Intelligence package by running the appropriate command for your language preference:
 
-**C#**
+    **C#**
+    
+    ```
+    dotnet add package Azure.AI.FormRecognizer --version 4.1.0 
+    ```
+    
+    **Python**
+    
+    ```
+    pip install azure-ai-formrecognizer==3.3.0
+    ```
 
-```
-dotnet add package Azure.AI.FormRecognizer --version 4.1.0 
-```
-
-**Python**
-
-```
-pip install azure-ai-formrecognizer==3.3.0
-```
 1. Open the code files for your preferred language in the code editor.
 
     ```bash
@@ -157,23 +158,23 @@ pip install azure-ai-formrecognizer==3.3.0
     - Your Document Intelligence key.
     - The Model ID generated you provided when training your model. You can find this on the **Models** page of the Document Intelligence Studio. **Save** your changes.
 
-6. In the code editor, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, particularly that the image in the URL refers to the file in this GitHub repo on the web.    
+1. In the code editor, open the code file for your client application (*Program.cs* for C#, *test-model.py* for Python) and review the code it contains, particularly that the image in the URL refers to the file in this GitHub repo on the web.    
 
-7. Return the terminal, and enter the following command to run the program:
+1. Return the terminal, and enter the following command to run the program:
 
-**C#**
+    **C#**
+    
+    ```
+    dotnet run
+    ```
+    
+    **Python**
+    
+    ```
+    python test-model.py
+    ```
 
-```
-dotnet run
-```
-
-**Python**
-
-```
-python test-model.py
-```
-
-8. View the output and observe how the output for the model provides field names like `Merchant` and `CompanyPhoneNumber`.
+1. View the output and observe how the output for the model provides field names like `Merchant` and `CompanyPhoneNumber`.
 
 ## Clean up
 
