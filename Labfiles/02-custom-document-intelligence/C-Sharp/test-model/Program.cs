@@ -1,65 +1,37 @@
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+using Azure;
+using Azure.AI.FormRecognizer.DocumentAnalysis;
 using Microsoft.Extensions.Configuration;
 
-// import namespaces
-using Azure;
-using Azure.AI.FormRecognizer;  
-using Azure.AI.FormRecognizer.Models;
-using Azure.AI.FormRecognizer.Training;
+// Get configuration settings from AppSettings
+IConfiguration configuration = new ConfigurationBuilder()
+    .AddJsonFile("appsettings.json")
+    .Build();
+string endpoint = configuration["DocIntelligenceEndpoint"];
+string apiKey = configuration["DocIntelligenceKey"];
+AzureKeyCredential credential = new AzureKeyCredential(apiKey);
+DocumentAnalysisClient client = new DocumentAnalysisClient(new Uri(endpoint), credential);
 
-namespace test_model
+string modelId =  configuration["ModelId"];
+Uri fileUri = new Uri("https://raw.githubusercontent.com/MicrosoftLearning/mslearn-ai-document-intelligence/main/Labfiles/02-custom-document-intelligence/test1.jpg");
+Console.WriteLine($"Analyzing document from Uri: {fileUri.AbsoluteUri}");
+
+AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, modelId, fileUri);
+AnalyzeResult result = operation.Value;
+
+Console.WriteLine($"Document was analyzed with model with ID: {result.ModelId}");
+
+foreach (AnalyzedDocument document in result.Documents)
 {
-    class Program
-    {     
-        static async Task Main(string[] args)
-        {     
-            try
-            {   
-                // Get configuration settings from AppSettings
-                IConfigurationBuilder builder = new ConfigurationBuilder().AddJsonFile("appsettings.json");
-                IConfigurationRoot configuration = builder.Build();
-                string formEndpoint = configuration["FormEndpoint"];
-                string formKey = configuration["FormKey"];
-                string modelId = configuration["ModelId"];
-                
-                // Authenticate Azure AI Document Intelligence Client 
-                var credential = new AzureKeyCredential(formKey);
-                var recognizerClient = new FormRecognizerClient(new Uri(formEndpoint), credential);
+    Console.WriteLine($"Document of type: {document.DocumentType}");
 
-                // Get form url for testing   
-                string image_file = "test1.jpg";
-                using (var image_data = File.OpenRead(image_file))
-                {
-                    // Use trained model with new form 
-                    RecognizedFormCollection forms = await recognizerClient
-                    .StartRecognizeCustomForms(modelId, image_data)
-                    .WaitForCompletionAsync();
-                    
-                    foreach (RecognizedForm form in forms)
-                    {
-                        Console.WriteLine($"Form of type: {form.FormType}");
-                        foreach (FormField field in form.Fields.Values)
-                        {
-                            Console.WriteLine($"Field '{field.Name}':");
+    foreach (KeyValuePair<string, DocumentField> fieldKvp in document.Fields)
+    {
+        string fieldName = fieldKvp.Key;
+        DocumentField field = fieldKvp.Value;
 
-                            if (field.LabelData != null)
-                            {
-                                Console.WriteLine($"    Label: '{field.LabelData.Text}'");
-                            }
+        Console.WriteLine($"Field '{fieldName}': ");
 
-                            Console.WriteLine($"    Value: '{field.ValueData.Text}'");
-                            Console.WriteLine($"    Confidence: {field.Confidence}");
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }         
-        }
+        Console.WriteLine($"  Content: '{field.Content}'");
+        Console.WriteLine($"  Confidence: '{field.Confidence}'");
     }
 }
