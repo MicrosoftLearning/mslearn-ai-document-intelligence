@@ -84,13 +84,13 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
 
 **C#**
 ```bash
-cd doc-intelligence/01-prebuilt-models/starter/invoicereader/C-Sharp
+cd doc-intelligence/Labfiles/01-prebuilt-models/starter/invoicereader/C-Sharp
 code Program.cs
 ```
 
 **Python**
 ```bash
-cd doc-intelligence/01-prebuilt-models/starter/invoicereader/Pyhton
+cd doc-intelligence/Labfiles/01-prebuilt-models/starter/invoicereader/Pyhton
 code document-analysis.py
 ```
 
