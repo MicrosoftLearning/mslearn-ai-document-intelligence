@@ -94,6 +94,18 @@ cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/Pyhton
 code document-analysis.py
 ```
 
+1. Install the Azure Form Recognizer client library package by running the appropriate command for your language preference:
+
+**C#**
+```bash
+dotnet add package Azure.AI.FormRecognizer --version 4.1.0
+```
+
+**Python**
+```bash
+pip install azure-ai-formrecognizer --version 3.3.0
+```
+
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
 1. In the Cloud Shell code editor, in the list of files on the left, locate this line and replace `<Endpoint URL>` with the string you just copied:
 
