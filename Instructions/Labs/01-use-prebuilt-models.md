@@ -78,43 +78,82 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     git clone https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence doc-intelligence
     ```
 
+> **Note**: You can choose to use the SDK for either **C#** or **Python**. In the following steps, perform the actions appropriate for your preferred language.
+
 1. Change to the starter directory and then start the code editor:
 
+### C#
     ```bash
-    cd doc-intelligence/01-prebuilt-models/starter/invoicereader
+    cd doc-intelligence/01-prebuilt-models/starter/invoicereader/CSharp
     code Program.cs
     ```
+### Python
+    ```bash
+    cd doc-intelligence/01-prebuilt-models/starter/invoicereader/Pyhton
+    code document-analysis.py
+    ```
+
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
 1. In the Cloud Shell code editor, in the list of files on the left, locate this line and replace `<Endpoint URL>` with the string you just copied:
 
+### C#
     ```csharp
     string endpoint = "<Endpoint URL>";
+    ```
+
+### Python
+    ```python
+    endpoint = "Endpoint URL"
     ```
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
 1. In the Cloud Shell code editor, locate this line and replace `<API Key>` with the string you just copied:
 
+### C#
+    ```csharp
     ```csharp
     string apiKey = "<API Key>";
     ```
+### Python
+    ```python
+    key = "API Key"
+    ```
 
-1. Locate the comment `// Create the client`. Following that, on new lines, enter the following code:
+1. Locate the comment `Create the client`. Following that, on new lines, enter the following code:
+
+### C#
+    ```csharp
 
     ```csharp
     var cred = new AzureKeyCredential(apiKey);
     var client = new DocumentAnalysisClient(new Uri(endpoint), cred);
     ```
 
-1. Locate the comment `// Analyze the invoice`. Following that, on new lines, enter the following code:
+### Python
+    ```python
+    document_analysis_client = DocumentAnalysisClient(
+        endpoint=endpoint, credential=AzureKeyCredential(key)
+    )
+    ```
+1. Locate the comment `Analyze the invoice`. Following that, on new lines, enter the following code:
 
+### C#
     ```csharp
     AnalyzeDocumentOperation operation = await client.StartAnalyzeDocumentFromUriAsync("prebuilt-invoice", fileUri);
     await operation.WaitForCompletionAsync();
     ```
 
-1. Locate the comment `// Display invoice information to the user`. Following that, on news lines, enter the following code:
+### Python
+    ```python
+    poller = document_analysis_client.begin_analyze_document_from_url(
+        fileModelId, fileUri, locale=fileLocale
+    )
+    ```
 
+1. Locate the comment `Display invoice information to the user`. Following that, on news lines, enter the following code:
+
+### C#
     ```csharp
     AnalyzeResult result = operation.Value;
     AnalyzedDocument invoice = result.Documents[0];
@@ -129,20 +168,37 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     }
     ```
 
+### Python
+    ```python
+    receipts = poller.result()
+    
+    for idx, receipt in enumerate(receipts.documents):
+    
+        vendor_name = receipt.fields.get("VendorName")
+        if vendor_name:
+            print(f"\nVendor Name: {vendor_name.value}, with confidence {vendor_name.confidence}.")
+    ```
     > [!NOTE]
-    > You've added code to display the vendor name. The starter project also includes code to display the customer name and invoice total.
+    > You've added code to display the vendor name. The starter project also includes code to display the *customer name* and *invoice total*.
 
 1. To save your code and exit the editor, press <kbd>CTRL + S</kbd> and then press <kbd>CTRL + Q</kbd>.
-1. To build your project, enter this command:
+1. *For C# only*, to build your project, enter this command:
 
+### C#
     ```bash
     dotnet build
     ```
 
 1. To run your code, enter this command:
 
+### C#
     ```bash
     dotnet run
+    ```
+
+### Python
+    ```python
+    python document-analysis.py
     ```
 
     The program displays the vendor name, customer name, and invoice total with confidence levels. Compare the values it reports with the sample invoice you opened at the start of this section.

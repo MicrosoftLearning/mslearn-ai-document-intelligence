@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Py1fYjNBQSDWz4p70PxJTSihL8G/HaPTlOYFlKIcyUHwzzZ2zmneBT877AG6WR0FqXs9MzRT2bC6T8wspg+84w==",
+  "dgSpecHash": "YMGX/XDbWn6Y9sxfJURjjEC6E/BtpCdDdxjUsR+fNlGFj8cprmGv/bEPtay5Rzdt3mupPd5Cmc8sJf6PXtLiRg==",
   "success": true,
-  "projectFilePath": "C:\\WWL\\learn-pr\\mslearn-ai-document-intelligence\\Labfiles\\01-prebuild-models\\starter\\invoicereader\\invoicereader.csproj",
+  "projectFilePath": "C:\\WWL\\learn-pr\\mslearn-ai-document-intelligence\\Labfiles\\01-prebuild-models\\starter\\invoicereader\\C-Sharp\\invoicereader.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\calopez\\.nuget\\packages\\azure.ai.formrecognizer\\4.0.0-beta.3\\azure.ai.formrecognizer.4.0.0-beta.3.nupkg.sha512",
     "C:\\Users\\calopez\\.nuget\\packages\\azure.core\\1.22.0\\azure.core.1.22.0.nupkg.sha512",

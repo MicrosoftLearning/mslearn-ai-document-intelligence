@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "invoicereader", "Labfiles\0
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "starter", "starter", "{3542882E-FBA8-4974-B77F-DB4E8FFC1643}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "invoicereader", "Labfiles\01-prebuild-models\starter\invoicereader\invoicereader.csproj", "{648577C6-EA7E-4855-BAA2-5FFCA84AC679}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "invoicereader", "Labfiles\01-prebuild-models\starter\invoicereader\C-Sharp\invoicereader.csproj", "{648577C6-EA7E-4855-BAA2-5FFCA84AC679}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02-custom-document-intelligence", "02-custom-document-intelligence", "{F935E336-2EB5-4462-8724-C7FF701899B3}"
 EndProject
