@@ -105,7 +105,7 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **Python**
 
     ```bash
-    pip install azure-ai-formrecognizer --version 3.3.0
+    pip install azure-ai-formrecognizer
     ```
 
 1. Start the code editor:
