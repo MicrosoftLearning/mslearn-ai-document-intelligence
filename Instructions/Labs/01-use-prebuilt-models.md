@@ -91,7 +91,7 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **Python**
 
     ```bash
-    cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/Pyhton
+    cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/Python
     ```
 
 1. Install the Azure Form Recognizer client library package by running the appropriate command for your language preference:
