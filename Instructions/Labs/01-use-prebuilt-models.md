@@ -67,7 +67,7 @@ We'll use Cloud Shell in your Azure subscription to host a console application t
 
 Now, let's write some code that uses your Azure AI Document Intelligence resource. You'll add your connection details to the sample code, and complete the project with lines that send a sample invoice and display data from it:
 
-1. Open a new browser tab and go to the [sample invoice document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf).
+1. Open a new browser tab and go to the [sample invoice document](https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence/blob/main/Labfiles/01-prebuild-models/sample-invoice/sample-invoice.pdf).
 1. Examine the form and note some of its fields and values. This is the document that your code will analyze.
 
     ![Screenshot showing the sample invoice that the code will analyze.](../media/sample-invoice.png#lightbox)
