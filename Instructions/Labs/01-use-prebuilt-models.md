@@ -67,7 +67,7 @@ We'll use Cloud Shell in your Azure subscription to host a console application t
 
 Now, let's write some code that uses your Azure AI Document Intelligence resource. You'll add your connection details to the sample code, and complete the project with lines that send a sample invoice and display data from it:
 
-1. Open a new browser tab and go to the [sample invoice document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf).
+1. Open a new browser tab and go to the [sample invoice document](https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence/blob/main/Labfiles/01-prebuild-models/sample-invoice/sample-invoice.pdf).
 1. Examine the form and note some of its fields and values. This is the document that your code will analyze.
 
     ![Screenshot showing the sample invoice that the code will analyze.](../media/sample-invoice.png#lightbox)
@@ -78,62 +78,153 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     git clone https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence doc-intelligence
     ```
 
-1. Change to the starter directory and then start the code editor:
+> **Note**: You can choose to use the SDK for either **C#** or **Python**. In the following steps, perform the actions appropriate for your preferred language.
+
+1. Change to the starter directory:
+
+    **C#**
 
     ```bash
-    cd doc-intelligence/01-prebuilt-models/starter/invoicereader
+    cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/C-Sharp
+    ```
+
+    **Python**
+
+    ```bash
+    cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/Python
+    ```
+
+1. Install the Azure Form Recognizer client library package by running the appropriate command for your language preference:
+
+    **C#**
+
+    ```bash
+    dotnet add package Azure.AI.FormRecognizer --version 4.1.0
+    ```
+
+    **Python**
+
+    ```bash
+    pip install azure-ai-formrecognizer
+    ```
+
+1. Start the code editor:
+
+    **C#**
+
+    ```bash
     code Program.cs
+    ```
+
+    **Python**
+
+    ```bash
+    code document-analysis.py
     ```
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
 1. In the Cloud Shell code editor, in the list of files on the left, locate this line and replace `<Endpoint URL>` with the string you just copied:
 
+    **C#**
+
     ```csharp
     string endpoint = "<Endpoint URL>";
+    ```
+
+    **Python**
+
+    ```python
+    endpoint = "Endpoint URL"
     ```
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
 1. In the Cloud Shell code editor, locate this line and replace `<API Key>` with the string you just copied:
 
+    **C#**
+
     ```csharp
     string apiKey = "<API Key>";
     ```
 
-1. Locate the comment `// Create the client`. Following that, on new lines, enter the following code:
+    **Python**
+
+    ```python
+    key = "API Key"
+    ```
+
+1. Locate the comment `Create the client`. Following that, on new lines, enter the following code:
+
+    **C#**
 
     ```csharp
     var cred = new AzureKeyCredential(apiKey);
     var client = new DocumentAnalysisClient(new Uri(endpoint), cred);
     ```
 
-1. Locate the comment `// Analyze the invoice`. Following that, on new lines, enter the following code:
+    **Python**
+
+    ```python
+    document_analysis_client = DocumentAnalysisClient(
+        endpoint=endpoint, credential=AzureKeyCredential(key)
+    )
+    ```
+
+1. Locate the comment `Analyze the invoice`. Following that, on new lines, enter the following code:
+
+    **C#**
 
     ```csharp
-    AnalyzeDocumentOperation operation = await client.StartAnalyzeDocumentFromUriAsync("prebuilt-invoice", fileUri);
+    AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-invoice", fileUri);
     await operation.WaitForCompletionAsync();
     ```
 
-1. Locate the comment `// Display invoice information to the user`. Following that, on news lines, enter the following code:
+    **Python**
+
+    ```python
+    poller = document_analysis_client.begin_analyze_document_from_url(
+        fileModelId, fileUri, locale=fileLocale
+    )
+    ```
+
+1. Locate the comment `Display invoice information to the user`. Following that, on news lines, enter the following code:
+
+    **C#**
 
     ```csharp
     AnalyzeResult result = operation.Value;
-    AnalyzedDocument invoice = result.Documents[0];
-
-    if (invoice.Fields.TryGetValue("VendorName", out DocumentField vendorNameField))
+    
+    foreach (AnalyzedDocument invoice in result.Documents)
     {
-        if (vendorNameField.ValueType == DocumentFieldType.String)
+        if (invoice.Fields.TryGetValue("VendorName", out DocumentField? vendorNameField))
         {
-            string vendorName = vendorNameField.AsString();
-            Console.WriteLine($"Vendor Name: '{vendorName}', with confidence {vendorNameField.Confidence}.");
+            if (vendorNameField.FieldType == DocumentFieldType.String)
+            {
+                string vendorName = vendorNameField.Value.AsString();
+                Console.WriteLine($"Vendor Name: '{vendorName}', with confidence {vendorNameField.Confidence}.");
+            }
         }
-    }
+    ```
+
+    **Python**
+
+    ```python
+    receipts = poller.result()
+    
+    for idx, receipt in enumerate(receipts.documents):
+    
+        vendor_name = receipt.fields.get("VendorName")
+        if vendor_name:
+            print(f"\nVendor Name: {vendor_name.value}, with confidence {vendor_name.confidence}.")
     ```
 
     > [!NOTE]
-    > You've added code to display the vendor name. The starter project also includes code to display the customer name and invoice total.
+    > You've added code to display the vendor name. The starter project also includes code to display the *customer name* and *invoice total*.
 
 1. To save your code and exit the editor, press <kbd>CTRL + S</kbd> and then press <kbd>CTRL + Q</kbd>.
-1. To build your project, enter this command:
+
+1. *For C# only*, to build your project, enter this command:
+
+    **C#**
 
     ```bash
     dotnet build
@@ -141,8 +232,16 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
 
 1. To run your code, enter this command:
 
+    **C#**
+
     ```bash
     dotnet run
     ```
 
-    The program displays the vendor name, customer name, and invoice total with confidence levels. Compare the values it reports with the sample invoice you opened at the start of this section.
+    **Python**
+
+    ```bash
+    python document-analysis.py
+    ```
+
+The program displays the vendor name, customer name, and invoice total with confidence levels. Compare the values it reports with the sample invoice you opened at the start of this section.
