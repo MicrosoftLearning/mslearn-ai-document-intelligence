@@ -58,7 +58,7 @@ To use the Azure AI Document Intelligence service, you need a Azure AI Document 
 
 ## Gather documents for training
 
-![An image of an invoice.](../02-custom-document-intelligence/sample-forms/Form_1.jpg)  
+![An image of an invoice used in this project.](../media/Form_1.jpg)
 
 You'll use the sample forms from the **02-custom-document-intelligence/sample-forms** folder in this repo, which contain all the files you'll need to train and test a model.
 
@@ -74,7 +74,7 @@ You'll use the sample forms from the **02-custom-document-intelligence/sample-fo
 
 1. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group** name in subsequent steps.
 
-![An example of the resource group page.](./images/resource_group_variables.png)
+![An example of the resource group page.](../media/resource_group_variables.png)
 
 1. In the terminal pane, run the following command to list Azure locations.
 
