@@ -42,107 +42,144 @@ Let's start by using the **Azure AI Document Intelligence Studio** and the read 
 
     ![Screenshot showing the detection of language for two spans in the results from the read model in Azure AI Document Intelligence Studio.](../media/language-detection.png#lightbox)
 
-## Run Cloud Shell
+## Prepare to develop an app in Visual Studio Code
 
-We'll use Cloud Shell in your Azure subscription to host a console application that calls Azure AI Document Intelligence. Follow these steps to start the Cloud Shell:
+Now let's explore the app that uses the Azure Document Intelligence service SDK. You'll develop your app using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
 
-1. In the Azure portal select the **[>_]** (Cloud Shell) button at the top of the page to the right of the search box. This opens a Cloud Shell pane at the bottom of the portal.
+> **Tip**: If you have already cloned the **mslearn-ai-document-intelligence** repo, open it in Visual Studio code. Otherwise, follow these steps to clone it to your development environment.
 
-    ![Screenshot showing how to open Cloud Shell in the Azure portal.](../media/cloudshell-launch-portal.png#lightbox)
+1. Start Visual Studio Code.
+1. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence` repository to a local folder (it doesn't matter which folder).
+1. When the repository has been cloned, open the folder in Visual Studio Code.
+1. Wait while additional files are installed to support the C# code projects in the repo.
 
-1. The first time you open the Cloud Shell, you may be prompted to choose the type of shell you want to use (*Bash* or *PowerShell*). Select **Bash**. If you do not see this option, skip the step.
-1. If you are prompted to create storage for your Cloud Shell, ensure your subscription is specified and select **Create storage**. Then wait a minute or so for the storage to be created.
+    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
 
-    ![Screenshot showing how to mount storage with Create storage highlighted.](../media/create-storage.png#lightbox)
+## Configure your application
 
-1. Make sure the type of shell indicated on the top left of the Cloud Shell pane is switched to *Bash*. If it is *PowerShell*, switch to *Bash* by using the drop-down menu.
+Applications for both C# and Python have been provided, as well as a sample pdf file you'll use to test the document intelligence. Both apps feature the same functionality. First, you'll complete some key parts of the application to enable using your Azure Document Intelligence resource.
 
-    ![Screenshot showing how to change the Cloud Shell to Bash in the Azure portal.](../media/switch-bash.png#lightbox)
+1. In Visual Studio Code, in the **Explorer** pane, browse to the **Labfiles/01-prebuild-models** folder and expand the **CSharp** or **Python** folder depending on your language preference. Each folder contains the language-specific files for an app into which you're you're going to integrate Azure OpenAI functionality.
+1. Right-click the **CSharp** or **Python** folder containing your code files and open an integrated terminal. Then install the Azure Form Recognizer SDK package by running the appropriate command for your language preference:
 
-1. Wait for Bash to start. You should see the following screen in the Azure portal:
+    **C#**: `dotnet add package Azure.AI.FormRecognizer --version 4.1.0`
 
-    ![Screenshot showing the Cloud Shell ready to use in the Azure portal.](../media/cloud-shell-ready.png#lightbox)
+    **Python**: `pip install azure-ai-formrecognizer==3.3.0`
 
-## Use the invoice model
+## Add code to use the Azure OpenAI service
 
-Now, let's write some code that uses your Azure AI Document Intelligence resource. You'll add your connection details to the sample code, and complete the project with lines that send a sample invoice and display data from it:
-
-1. Open a new browser tab and go to the [sample invoice document](https://raw.githubusercontent.com/Azure-Samples/cognitive-services-REST-api-samples/master/curl/form-recognizer/sample-invoice.pdf).
-1. Examine the form and note some of its fields and values. This is the document that your code will analyze.
-
-    ![Screenshot showing the sample invoice that the code will analyze.](../media/sample-invoice.png#lightbox)
-
-1. In the Cloud Shell, to clone the code repository, enter this command:
-
-    ```bash
-    git clone https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence doc-intelligence
-    ```
-
-1. Change to the starter directory and then start the code editor:
-
-    ```bash
-    cd doc-intelligence/01-prebuilt-models/starter/invoicereader
-    code Program.cs
-    ```
+Now you're ready to use the Azure Form Recognizer SDK to evaluate the pdf file.
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
-1. In the Cloud Shell code editor, in the list of files on the left, locate this line and replace `<Endpoint URL>` with the string you just copied:
+1. In the **Explorer** pane, in the **CSharp** or **Python** folder, open the code file for your preferred language, and replace `<Endpoint URL>` with the string you just copied:
+
+    **C#**: ***Program.cs***
 
     ```csharp
     string endpoint = "<Endpoint URL>";
     ```
 
+    **Python**: ***document-analysis.py***
+
+    ```python
+    endpoint = "<Endpoint URL>"
+    ```
+
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
-1. In the Cloud Shell code editor, locate this line and replace `<API Key>` with the string you just copied:
+1. In the code file in Visual Studio Code, locate this line and replace `<API Key>` with the string you just copied:
+
+    **C#**
 
     ```csharp
     string apiKey = "<API Key>";
     ```
 
-1. Locate the comment `// Create the client`. Following that, on new lines, enter the following code:
+    **Python**
+
+    ```python
+    key = "<API Key>"
+    ```
+
+1. Locate the comment `Create the client`. Following that, on new lines, enter the following code:
+
+    **C#**
 
     ```csharp
     var cred = new AzureKeyCredential(apiKey);
     var client = new DocumentAnalysisClient(new Uri(endpoint), cred);
     ```
 
-1. Locate the comment `// Analyze the invoice`. Following that, on new lines, enter the following code:
+    **Python**
+
+    ```python
+    document_analysis_client = DocumentAnalysisClient(
+        endpoint=endpoint, credential=AzureKeyCredential(key)
+    )
+    ```
+
+1. Locate the comment `Analyze the invoice`. Following that, on new lines, enter the following code:
+
+    **C#**
 
     ```csharp
-    AnalyzeDocumentOperation operation = await client.StartAnalyzeDocumentFromUriAsync("prebuilt-invoice", fileUri);
+    AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, "prebuilt-invoice", fileUri);
     await operation.WaitForCompletionAsync();
     ```
 
-1. Locate the comment `// Display invoice information to the user`. Following that, on news lines, enter the following code:
+    **Python**
+
+    ```python
+    poller = document_analysis_client.begin_analyze_document_from_url(
+        fileModelId, fileUri, locale=fileLocale
+    )
+    ```
+
+1. Locate the comment `Display invoice information to the user`. Following that, on news lines, enter the following code:
+
+    **C#**
 
     ```csharp
     AnalyzeResult result = operation.Value;
-    AnalyzedDocument invoice = result.Documents[0];
-
-    if (invoice.Fields.TryGetValue("VendorName", out DocumentField vendorNameField))
+    
+    foreach (AnalyzedDocument invoice in result.Documents)
     {
-        if (vendorNameField.ValueType == DocumentFieldType.String)
+        if (invoice.Fields.TryGetValue("VendorName", out DocumentField? vendorNameField))
         {
-            string vendorName = vendorNameField.AsString();
-            Console.WriteLine($"Vendor Name: '{vendorName}', with confidence {vendorNameField.Confidence}.");
+            if (vendorNameField.FieldType == DocumentFieldType.String)
+            {
+                string vendorName = vendorNameField.Value.AsString();
+                Console.WriteLine($"Vendor Name: '{vendorName}', with confidence {vendorNameField.Confidence}.");
+            }
         }
-    }
+    ```
+
+    **Python**
+
+    ```python
+    receipts = poller.result()
+    
+    for idx, receipt in enumerate(receipts.documents):
+    
+        vendor_name = receipt.fields.get("VendorName")
+        if vendor_name:
+            print(f"\nVendor Name: {vendor_name.value}, with confidence {vendor_name.confidence}.")
     ```
 
     > [!NOTE]
-    > You've added code to display the vendor name. The starter project also includes code to display the customer name and invoice total.
+    > You've added code to display the vendor name. The starter project also includes code to display the *customer name* and *invoice total*.
 
-1. To save your code and exit the editor, press <kbd>CTRL + S</kbd> and then press <kbd>CTRL + Q</kbd>.
-1. To build your project, enter this command:
+1. Save the changes to the code file.
 
-    ```bash
-    dotnet build
-    ```
+1. In the interactive terminal pane, ensure the folder context is the folder for your preferred language. Then enter the following command to run the application.
+
+1. *For C# only*, to build your project, enter this command:
+
+    **C#**: `dotnet build`
 
 1. To run your code, enter this command:
 
-    ```bash
-    dotnet run
-    ```
+    **C#**: `dotnet run`
 
-    The program displays the vendor name, customer name, and invoice total with confidence levels. Compare the values it reports with the sample invoice you opened at the start of this section.
+    **Python**: `python document-analysis.py`
+
+The program displays the vendor name, customer name, and invoice total with confidence levels. Compare the values it reports with the sample invoice you opened at the start of this section.

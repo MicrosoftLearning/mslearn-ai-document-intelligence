@@ -85,13 +85,13 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **C#**
 
     ```bash
-    cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/C-Sharp
+    cd doc-intelligence/Labfiles/01-prebuild-models/CSharp
     ```
 
     **Python**
 
     ```bash
-    cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/Python
+    cd doc-intelligence/Labfiles/01-prebuild-models/Python
     ```
 
 1. Install the Azure Form Recognizer client library package by running the appropriate command for your language preference:
@@ -105,7 +105,7 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **Python**
 
     ```bash
-    pip install azure-ai-formrecognizer
+    pip install azure-ai-formrecognizer==3.3.0
     ```
 
 1. Start the code editor:
@@ -134,7 +134,7 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **Python**
 
     ```python
-    endpoint = "Endpoint URL"
+    endpoint = "<Endpoint URL>"
     ```
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
@@ -149,7 +149,7 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **Python**
 
     ```python
-    key = "API Key"
+    key = "<API Key>"
     ```
 
 1. Locate the comment `Create the client`. Following that, on new lines, enter the following code:
