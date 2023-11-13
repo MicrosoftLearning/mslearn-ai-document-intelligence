@@ -5,7 +5,7 @@ from azure.ai.formrecognizer import DocumentAnalysisClient
 endpoint = "<Endpoint URL>"
 key = "<API Key>"
 
-fileUri = "https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence/blob/main/Labfiles/01-prebuild-models/sample-invoice/sample-invoice.pdf"
+fileUri = "https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence/blob/main/Labfiles/01-prebuild-models/sample-invoice/sample-invoice.pdf?raw=true"
 fileLocale = "en-US"
 fileModelId = "prebuilt-invoice"
 
