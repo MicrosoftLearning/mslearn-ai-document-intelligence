@@ -12,7 +12,7 @@ AzureKeyCredential credential = new AzureKeyCredential(apiKey);
 DocumentAnalysisClient client = new DocumentAnalysisClient(new Uri(endpoint), credential);
 
 string modelId =  configuration["ModelId"];
-Uri fileUri = new Uri("https://raw.githubusercontent.com/MicrosoftLearning/mslearn-ai-document-intelligence/main/Labfiles/02-custom-document-intelligence/test1.jpg");
+Uri fileUri = new Uri("https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence/blob/main/Labfiles/02-custom-document-intelligence/test1.jpg?raw=true");
 Console.WriteLine($"Analyzing document from Uri: {fileUri.AbsoluteUri}");
 
 AnalyzeDocumentOperation operation = await client.AnalyzeDocumentFromUriAsync(WaitUntil.Completed, modelId, fileUri);

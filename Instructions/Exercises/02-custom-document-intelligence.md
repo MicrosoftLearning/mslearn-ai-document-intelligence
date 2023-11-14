@@ -21,7 +21,7 @@ Now let's explore the app that uses the service SDK. You'll develop your app usi
 1. When the repository has been cloned, open the folder in Visual Studio Code.
 1. Wait while additional files are installed to support the C# code projects in the repo.
 
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**.
+    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**. If you are prompted with the Message *Detected an Azure Function Project in folder*, you can safely close that message.
 
 ## Create a Azure AI Document Intelligence resource
 
@@ -81,7 +81,7 @@ You'll use the sample forms from the **Labfiles/02-custom-document-intelligence/
 
 1. In Visual Studio Code, in the **Labfiles/02-custom-document-intelligence** folder, select **setup.cmd**. You will use this script to run the Azure command line interface (CLI) commands required to create the other Azure resources you need.
 
-1. In the **setup.sh** script, review the commands. The program will:
+1. In the **setup.cmd** script, review the commands. The program will:
     - Create a storage account in your Azure resource group
     - Upload files from your local *sampleforms* folder to a container called *sampleforms* in the storage account
     - Print a Shared Access Signature URI
@@ -130,9 +130,17 @@ Now you will train the model using the files uploaded to the storage account.
 
 1. In the integrated terminal, install the Document Intelligence package by running the appropriate command for your language preference:
 
-    **C#**: `dotnet add package Azure.AI.FormRecognizer --version 4.1.0`
+    **C#**:
 
-    **Python**: `pip install azure-ai-formrecognizer==3.3.0`
+    ```powershell
+    dotnet add package Azure.AI.FormRecognizer --version 4.1.0
+    ```
+
+    **Python**:
+
+    ```powershell
+    pip install azure-ai-formrecognizer==3.3.0
+    ```
 
 1. In Visual Studio Code, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
     - Your Document Intelligence endpoint.
