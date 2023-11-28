@@ -7,7 +7,7 @@ GREEN=$(tput setaf 2)
 # Set up the resource group
 resourceGroupName=FormsRecognizerResources
 printf "${GREEN}Setting up the FormsRecognizerResources resource group. \n${NORMAL}"
-az group create --location westus --name FormsRecognizerResources
+az group create --location westus2 --name FormsRecognizerResources
 
 # Create a name for the storage account
 storageAccName=formsrecstorage$((10000 + RANDOM % 99999))
@@ -40,4 +40,4 @@ printf "${GREEN} Setting up the Forms Recognizer resource. \n${NORMAL}"
 SubID=$(az account show --query id --output tsv)
 az resource delete --ids "/subscriptions/${SubID}/providers/Microsoft.CognitiveServices/locations/westus/resourceGroups/${resourceGroupName}/deletedAccounts/FormsRecognizer"
 # Now, create the new one
-az cognitiveservices account create --kind FormRecognizer --location westus --name FormsRecognizer --resource-group $resourceGroupName --sku F0 --yes
+az cognitiveservices account create --kind FormRecognizer --location westus2 --name FormsRecognizer --resource-group $resourceGroupName --sku F0 --yes
