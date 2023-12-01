@@ -66,7 +66,7 @@ Applications for both C# and Python have been provided, as well as a sample pdf 
 
 1. In Visual Studio Code, in the **Explorer** pane, browse to the **Labfiles/01-prebuild-models** folder and expand the **CSharp** or **Python** folder depending on your language preference. Each folder contains the language-specific files for an app into which you're you're going to integrate Azure OpenAI functionality.
 
-1. Right-click the **CSharp** or **Python** folder containing your code files and open an integrated terminal. Then install the Azure Form Recognizer SDK package by running the appropriate command for your language preference:
+1. Right-click the **CSharp** or **Python** folder containing your code files and select **Open an integrated terminal**. Then install the Azure Form Recognizer SDK package by running the appropriate command for your language preference:
 
     **C#**:
 
@@ -209,3 +209,11 @@ Now you're ready to use the Azure Form Recognizer SDK to evaluate the pdf file.
     ```
 
 The program displays the vendor name, customer name, and invoice total with confidence levels. Compare the values it reports with the sample invoice you opened at the start of this section.
+
+## Clean up
+
+If you're done with your Azure resource, remember to delete the resource in the [Azure portal](https://portal.azure.com/?azure-portal=true) to avoid further charges.
+
+## More information
+
+For more information about the Document Intelligence service, see the [Document Intelligence documentation](https://learn.microsoft.com/azure/ai-services/document-intelligence/?azure-portal=true).
