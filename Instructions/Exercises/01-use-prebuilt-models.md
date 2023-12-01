@@ -6,36 +6,37 @@ lab:
 
 # Use prebuilt Document Intelligence models
 
-In this exercise, you'll set up an Azure AI Document Intelligence resource in your Azure subscription. You'll use both the Azure AI Document Intelligence Studio and C# code to submit forms to that resource for analysis.
+In this exercise, you'll set up an Azure AI Document Intelligence resource in your Azure subscription. You'll use both the Azure AI Document Intelligence Studio and C# or Python to submit forms to that resource for analysis.
 
 ## Create an Azure AI Document Intelligence resource
 
 Before you can call the Azure AI Document Intelligence service, you must create a resource to host that service in Azure:
 
-1. In the [Azure portal](https://portal.azure.com/learn.docs.microsoft.com?azure-portal=true), on the home page in the top search box, type **Document intelligence** and then press <kbd>Enter</kbd>.
+1. In a browser tab, open the Azure portal at [https://portal.azure.com](https://portal.azure.com?azure-portal=true), signing in with the Microsoft account associated with your Azure subscription.
+1. On the Azure portal home page, navigate to the top search box and type **Document intelligence** and then press <kbd>Enter</kbd>.
 1. On the **Document Intelligence** page, select **Create**.
-1. On the **Basics** page of **Create Document Intelligence** wizard, in the **Subscription** list, select your subscription.
-1. Under the **Resource group** list, select **Create new**.
-1. In the **Name** textbox, type **DocIntelligenceResources** and then select **OK**.
-1. In the **Region** list, select a region near you.
-1. In the **Name** box, type a globally unique name for your resource.
-1. In the **Pricing tier** list, select **Free F0** and then select **Review + create**. If you don't have a Free tier available, select **Standard S0**
-1. On the **Review + create** page, select **Create**, and then wait while Azure creates the Azure AI Document Intelligence resource.
+1. On the **Create Document Intelligence** page, use the following to configure your resource:
+    - **Subscription**: Your Azure subscription.
+    - **Resource group**: Select or create a resource group with a unique name such as *DocIntelligenceResources*.
+    - **Region**: select a region near you.
+    - **Name**: Enter a globally unique name.
+    - **Pricing tier**: select **Free F0** (if you don't have a Free tier available, select **Standard S0**).
+1. Then select **Review + create**, and **Create**. Wait while Azure creates the Azure AI Document Intelligence resource.
 1. When the deployment is complete, select **Go to resource**. Keep this page open for the rest of this exercise.
 
-## Use the read model
+## Use the Read model
 
-Let's start by using the **Azure AI Document Intelligence Studio** and the read model to analyze a document with multiple languages. You'll connect Azure AI Document Intelligence Studio to the resource you just created to perform the analysis:
+Let's start by using the **Azure AI Document Intelligence Studio** and the Read model to analyze a document with multiple languages. You'll connect Azure AI Document Intelligence Studio to the resource you just created to perform the analysis:
 
-1. Open a new browser tab and go to [Azure AI Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
-1. Under **Document Analysis**, select **Read**.
+1. Open a new browser tab and go to the **Azure AI Document Intelligence Studio** at [https://documentintelligence.ai.azure.com/studio](https://documentintelligence.ai.azure.com/studio).
+1. Under **Document Analysis**, select the **Read** tile.
 1. If you are asked to sign into your account, use your Azure credentials.
 1. If you are asked which Azure AI Document Intelligence resource to use, select the subscription and resource name you used when you created the Azure AI Document Intelligence resource.
 1. In the list of documents on the left, select **read-german.png**.
 
     ![Screenshot showing the Read page in Azure AI Document Intelligence Studio.](../media/read-german-sample.png#lightbox)
 
-1. At the top-left, select **Analyze**.
+1. At the top-left, select **Run Analysis**.
 1. When the analysis is complete, the text extracted from the image is shown on the right in the **Content** tab. Review this text and compare it to the text in the original image for accuracy.
 1. Select the **Result** tab. This tab displays the extracted JSON code. 
 1. Scroll to the bottom of the JSON code in the **Result** tab. Notice that the read model has detected the language of each span. Most spans are in German (language code `de`) but the last span is in English (language code `en`).
@@ -57,7 +58,7 @@ Now let's explore the app that uses the Azure Document Intelligence service SDK.
 
 ## Configure your application
 
-Applications for both C# and Python have been provided, as well as a sample pdf file you'll use to test the document intelligence. Both apps feature the same functionality. First, you'll complete some key parts of the application to enable using your Azure Document Intelligence resource.
+Applications for both C# and Python have been provided, as well as a sample pdf file you'll use to test Document Intelligence. Both apps feature the same functionality. First, you'll complete some key parts of the application to enable using your Azure Document Intelligence resource.
 
 1. Examine the following invoice and note some of its fields and values. This is the invoice that your code will analyze.
 
@@ -83,7 +84,7 @@ Applications for both C# and Python have been provided, as well as a sample pdf 
 
 Now you're ready to use the Azure Form Recognizer SDK to evaluate the pdf file.
 
-1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
+1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. On the left pane, under *Resource Management*, select **Keys and Endpoint**. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
 1. In the **Explorer** pane, in the **CSharp** or **Python** folder, open the code file for your preferred language, and replace `<Endpoint URL>` with the string you just copied:
 
     **C#**: ***Program.cs***
@@ -98,7 +99,7 @@ Now you're ready to use the Azure Form Recognizer SDK to evaluate the pdf file.
     endpoint = "<Endpoint URL>"
     ```
 
-1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
+1. Switch to the browser tab that displays the Azure AI Document Intelligence **Keys and Endpoint** in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
 1. In the code file in Visual Studio Code, locate this line and replace `<API Key>` with the string you just copied:
 
     **C#**
