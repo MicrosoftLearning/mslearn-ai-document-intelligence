@@ -11,7 +11,7 @@ unique_id=$((1 + RANDOM % 99999))
 
 # Create a storage account in your Azure resource group
 echo "Creating storage..."
-az storage account create --name "ai102form$unique_id" --subscription "$subscription_id" --resource-group "$resource_group" --location "$location" --sku Standard_LRS --encryption-services blob --default-action Allow --output none
+az storage account create --name "ai102form$unique_id" --subscription "$subscription_id" --resource-group "$resource_group" --location "$location" --sku Standard_LRS --encryption-services blob --default-action Allow --allow-blob-public-access true --only-show-errors --output none
 
 echo "Uploading files..."
 # Get storage key to create a container in the storage account

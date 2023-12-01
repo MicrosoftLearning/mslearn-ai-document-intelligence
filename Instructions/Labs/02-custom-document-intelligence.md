@@ -4,7 +4,7 @@ lab:
     module: 'Module 11 - Reading Text in Images and Documents'
 ---
 
-# Extract Data from Forms 
+# Extract Data from Forms
 
 Suppose a company currently requires employees to manually purchase order sheets and enter the data into a database. They would like you to utilize AI services to improve the data entry process. You decide to build a machine learning model that will read the form and produce structured data that can be used to automatically update a database.
 
@@ -29,7 +29,7 @@ Suppose a company currently requires employees to manually purchase order sheets
   
     > **TIP**
     > If you recently used this command in another lab to clone the *doc-intelligence* repository, you can skip this step.
- 
+
 1. The files have been downloaded into a folder called **doc-intelligence**. Let's use the Cloud Shell Code editor to open the appropriate folder by running:
 
     ```bash
@@ -44,7 +44,7 @@ Suppose a company currently requires employees to manually purchase order sheets
 
 To use the Azure AI Document Intelligence service, you need a Azure AI Document Intelligence or Azure AI Services resource in your Azure subscription. You'll use the Azure portal to create a resource.
 
-1.  In the Azure portal, search for *Document intelligence*, select **Document intelligence**, and create a resource with the following settings:
+1. In the Azure portal, search for *Document intelligence*, select **Document intelligence**, and create a resource with the following settings:
 
     - **Subscription**: *Your Azure subscription*
     - **Resource group**: *Choose or create a resource group (if you are using a restricted subscription, you may not have permission to create a new resource group - use the one provided)*
@@ -78,7 +78,7 @@ You'll use the sample forms from the **02-custom-document-intelligence/sample-fo
 
 1. In the terminal pane, run the following command to list Azure locations.
 
-    ```
+    ```bash
     az account list-locations -o table
     ```
 
@@ -93,22 +93,22 @@ You'll use the sample forms from the **02-custom-document-intelligence/sample-fo
     - Upload files from your local _sampleforms_ folder to a container called _sampleforms_ in the storage account
     - Print a Shared Access Signature URI
 
-12. Modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location name where you deployed the Document Intelligence resource. 
+1. Modify the **subscription_id**, **resource_group**, and **location** variable declarations with the appropriate values for the subscription, resource group, and location name where you deployed the Document Intelligence resource. 
 Then **save** your changes.
 
     Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
 
-13. In the terminal for the **02-custom-document-intelligence** folder, enter the following command to run the script:
+1. In the terminal for the **02-custom-document-intelligence** folder, enter the following command to run the script:
 
-    ```
+    ```bash
     sh setup.sh
     ```
 
-14. When the script completes, review the displayed output and note your Azure resource's SAS URI.
+1. When the script completes, review the displayed output and note your Azure resource's SAS URI.
 
-> **Important**: Before moving on, paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in notepad or the Code window).
+    > **Important**: Before moving on, paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in notepad or the Code window).
 
-15. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage Browser (preview)**. Then in Storage Browser, expand **Blob containers** and select the **sampleforms** container to verify that the files have been uploaded from your local **02-custom-document-intelligence/sample-forms** folder.
+1. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage browser**. Then in Storage Browser, expand **Blob containers** and select the **sampleforms** container to verify that the files have been uploaded from your local **02-custom-document-intelligence/sample-forms** folder.
 
 ## Train the model using Document Intelligence Studio
 
@@ -136,14 +136,15 @@ Now you will train the model using the files uploaded to the storage account.
 1. Install the Document Intelligence package by running the appropriate command for your language preference:
 
     **C#**
-    
-    ```
+
+    ```bash
     dotnet add package Azure.AI.FormRecognizer --version 4.1.0 
     ```
-    
+
     **Python**
-    
-    ```
+
+    ```bash
+    pip install python-dotenv==1.0.0 --no-warn-script-location
     pip install azure-ai-formrecognizer==3.3.0
     ```
 
@@ -163,14 +164,14 @@ Now you will train the model using the files uploaded to the storage account.
 1. Return the terminal, and enter the following command to run the program:
 
     **C#**
-    
-    ```
+
+    ```bash
     dotnet run
     ```
-    
+
     **Python**
-    
-    ```
+
+    ```bash
     python test-model.py
     ```
 

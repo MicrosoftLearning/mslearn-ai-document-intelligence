@@ -75,24 +75,24 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
 1. In the Cloud Shell, to clone the code repository, enter this command:
 
     ```bash
+    rm -r doc-intelligence -f
     git clone https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence doc-intelligence
     ```
 
-> **Note**: You can choose to use the SDK for either **C#** or **Python**. In the following steps, perform the actions appropriate for your preferred language.
+    > **TIP**
+    > If you recently used this command in another lab to clone the *doc-intelligence* repository, you can skip this step.
 
-1. Change to the starter directory:
-
-    **C#**
-
-    ```bash
-    cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/C-Sharp
-    ```
-
-    **Python**
+1. The files have been downloaded into a folder called **doc-intelligence**. Let's use the Cloud Shell Code editor to open the appropriate folder by running:
 
     ```bash
-    cd doc-intelligence/Labfiles/01-prebuild-models/starter/invoicereader/Python
+    cd doc-intelligence/Labfiles/01-prebuild-models
     ```
+
+    ```bash
+    code .
+    ```
+
+1. In the terminal of Azure portal, navigate to the folder of your preferred language.
 
 1. Install the Azure Form Recognizer client library package by running the appropriate command for your language preference:
 
@@ -105,24 +105,13 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **Python**
 
     ```bash
-    pip install azure-ai-formrecognizer
+    pip install azure-ai-formrecognizer==3.3.0
     ```
 
-1. Start the code editor:
-
-    **C#**
-
-    ```bash
-    code Program.cs
-    ```
-
-    **Python**
-
-    ```bash
-    code document-analysis.py
-    ```
+1. Edit the respective code file for your preferred language in the Cloud Shell code editor. Either ***Program.cs*** for **C#** or ***document-analysis.py*** for **Python**.
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
+
 1. In the Cloud Shell code editor, in the list of files on the left, locate this line and replace `<Endpoint URL>` with the string you just copied:
 
     **C#**
@@ -134,7 +123,7 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **Python**
 
     ```python
-    endpoint = "Endpoint URL"
+    endpoint = "<Endpoint URL>"
     ```
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
@@ -149,7 +138,7 @@ Now, let's write some code that uses your Azure AI Document Intelligence resourc
     **Python**
 
     ```python
-    key = "API Key"
+    key = "<API Key>"
     ```
 
 1. Locate the comment `Create the client`. Following that, on new lines, enter the following code:
