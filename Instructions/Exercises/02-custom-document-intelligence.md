@@ -144,7 +144,7 @@ Now you will train the model using the files uploaded to the storage account.
     pip install azure-ai-formrecognizer==3.3.0
     ```
 
-1. In Visual Studio Code, edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) to add the following values:
+1. In Visual Studio Code, in the **Labfiles/02-custom-document-intelligence** folder, select the language you are using. Edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) with the following values:
     - Your Document Intelligence endpoint.
     - Your Document Intelligence key.
     - The Model ID generated you provided when training your model. You can find this on the **Models** page of the Document Intelligence Studio. **Save** your changes.
