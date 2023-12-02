@@ -61,7 +61,7 @@ You'll use the sample forms such as this one to train a test a model:
 
 1. In Visual Studio Code, in the *Explorer* pane, browse to the **Labfiles/02-custom-document-intelligence** folder and expand the **CSharp** or **Python** folder depending on your language preference. Each folder contains the language-specific files for an app into which you're you're going to integrate Azure OpenAI functionality.
 
-1. Return to the **Labfiles/02-custom-document-intelligence** folder. Right click and select **Open an integrated terminal**. 
+1. Right-click the **CSharp** or **Python** folder containing your code files and select **Open an integrated terminal**. 
 
 1. In the terminal, run the following command to login to Azure. The **az login** command will open the Microsoft Edge browser, login with the same account you used to create the Azure AI Document Intelligence resource. Once you are logged in, close the browser window.
 
