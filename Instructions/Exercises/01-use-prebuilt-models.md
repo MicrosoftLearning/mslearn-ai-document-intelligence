@@ -13,7 +13,7 @@ In this exercise, you'll set up an Azure AI Document Intelligence resource in yo
 Before you can call the Azure AI Document Intelligence service, you must create a resource to host that service in Azure:
 
 1. In a browser tab, open the Azure portal at [https://portal.azure.com](https://portal.azure.com?azure-portal=true), signing in with the Microsoft account associated with your Azure subscription.
-1. On the Azure portal home page, navigate to the top search box and type **Document intelligence** and then press **Enter**.
+1. On the Azure portal home page, navigate to the top search box and type **Document Intelligence** and then press **Enter**.
 1. On the **Document Intelligence** page, select **Create**.
 1. On the **Create Document Intelligence** page, use the following to configure your resource:
     - **Subscription**: Your Azure subscription.

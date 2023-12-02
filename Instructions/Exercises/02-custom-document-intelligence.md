@@ -12,7 +12,7 @@ Suppose a company currently requires employees to manually purchase order sheets
 
 ## Prepare to develop an app in Visual Studio Code
 
-Now let's explore the app that uses the service SDK. You'll develop your app using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
+Now let's use the service SDK to develop an app using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
 
 > **Tip**: If you have already cloned the **mslearn-ai-document-intelligence** repo, open it in Visual Studio code. Otherwise, follow these steps to clone it to your development environment.
 
@@ -28,7 +28,7 @@ Now let's explore the app that uses the service SDK. You'll develop your app usi
 To use the Azure AI Document Intelligence service, you need a Azure AI Document Intelligence or Azure AI Services resource in your Azure subscription. You'll use the Azure portal to create a resource.
 
 1. In a browser tab, open the Azure portal at [https://portal.azure.com](https://portal.azure.com?azure-portal=true), signing in with the Microsoft account associated with your Azure subscription.
-1. On the Azure portal home page, navigate to the top search box and type **Document intelligence** and then press **Enter**.
+1. On the Azure portal home page, navigate to the top search box and type **Document Intelligence** and then press **Enter**.
 1. On the **Document Intelligence** page, select **Create**.
 1. On the **Create Document Intelligence** page, use the following to configure your resource:
     - **Subscription**: Your Azure subscription.
@@ -37,9 +37,7 @@ To use the Azure AI Document Intelligence service, you need a Azure AI Document 
     - **Name**: Enter a globally unique name.
     - **Pricing tier**: select **Free F0** (if you don't have a Free tier available, select **Standard S0**).
 1. Then select **Review + create**, and **Create**. Wait while Azure creates the Azure AI Document Intelligence resource.
-1. When the deployment is complete, select **Go to resource**. 
-
-1. View the *Overview* page. Then on the left pane, under *Resource Management*, select the **Keys and Endpoint** page. You will need the **endpoint** and one of the **keys** from this page to manage access from your code later on.
+1. When the deployment is complete, select **Go to resource** to view the resource's **Overview** page. 
 
 ## Gather documents for training
 
@@ -47,7 +45,7 @@ You'll use the sample forms such as this one to train a test a model:
 
 ![An image of an invoice used in this project.](../media/Form_1.jpg)
 
-1. Return to **Visual Studio Code**. In the **Labfiles/02-custom-document-intelligence** folder,  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg** in the folder.
+1. Return to **Visual Studio Code**. In the *Explorer* pane, open the **Labfiles/02-custom-document-intelligence** folder and  expand the **sample-forms** folder. Notice there are files ending in **.json** and **.jpg** in the folder.
 
     You will use the **.jpg** files to train your model.  
 
@@ -55,23 +53,23 @@ You'll use the sample forms such as this one to train a test a model:
 
     You can view the images we are using in the *sample-forms* folder by selecting them on Visual Studio Code.
 
-1. Return to the **Azure portal**. You should be on the **Keys and Endpoint** page for your resource. In the left pane, select **Overview**. Under the *Essentials* section, view the **Resource group** in which you created the Document Intelligence resource.
+1. Return to the **Azure portal** and navigate to your resource's **Overview** page if you're not already there. Under the *Essentials* section, view the **Resource group** in which you created the Document Intelligence resource.
 
 1. On the **Overview** page for your resource group, note the **Subscription ID** and **Location**. You will need these values, along with your **resource group** name in subsequent steps.
 
     ![An example of the resource group page.](../media/resource_group_variables.png)
 
-1. In Visual Studio Code, in the **Explorer** pane, browse to the **Labfiles/02-custom-document-intelligence** folder and expand the **CSharp** or **Python** folder depending on your language preference. Each folder contains the language-specific files for an app into which you're you're going to integrate Azure OpenAI functionality.
+1. In Visual Studio Code, in the *Explorer* pane, browse to the **Labfiles/02-custom-document-intelligence** folder and expand the **CSharp** or **Python** folder depending on your language preference. Each folder contains the language-specific files for an app into which you're you're going to integrate Azure OpenAI functionality.
 
 1. Right-click the **CSharp** or **Python** folder containing your code files and select **Open an integrated terminal**. 
 
-1. In the integrated terminal pane, run the following command to login to Azure. The **az login** command will open the Microsoft Edge browser, login with the same account you used to create the Azure AI Document Intelligence resource. Once you are logged in, close the browser window.
+1. In the terminal, run the following command to login to Azure. The **az login** command will open the Microsoft Edge browser, login with the same account you used to create the Azure AI Document Intelligence resource. Once you are logged in, close the browser window.
 
     ```powershell
     az login
     ```
 
-1. In the integrated terminal pane, run the following command to list the Azure locations.
+1. Return to Visual Studio Code. In the terminal pane, run the following command to list the Azure locations.
 
     ```powershell
     az account list-locations -o table
@@ -93,7 +91,7 @@ Then **save** your changes.
 
     Leave the **expiry_date** variable as it is for the exercise. This variable is used when generating the Shared Access Signature (SAS) URI. In practice, you will want to set an appropriate expiry date for your SAS. You can learn more about SAS [here](https://docs.microsoft.com/azure/storage/common/storage-sas-overview#how-a-shared-access-signature-works).  
 
-1. In the integrated terminal for the **Labfiles/02-custom-document-intelligence** folder, enter the following command to run the script:
+1. In the terminal for the **Labfiles/02-custom-document-intelligence** folder, enter the following command to run the script:
 
     ```PowerShell
     $currentdir=(Get-Item .).FullName
@@ -103,34 +101,36 @@ Then **save** your changes.
 
     ```
 
-1. When the script completes, review the displayed output and note your Azure resource's SAS URI.
+1. When the script completes, review the displayed output.
 
-    > **Important**: Before moving on, paste the SAS URI somewhere you will be able to retrieve it again later (for example, in a new text file in notepad or the Code window).
-
-1. In the Azure portal, refresh the resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage browser**. Then in Storage Browser, expand **Blob containers** and select the **sampleforms** container to verify that the files have been uploaded from your local **02-custom-document-intelligence/sample-forms** folder.
+1. In the Azure portal, refresh your resource group and verify that it contains the Azure Storage account just created. Open the storage account and in the pane on the left, select **Storage browser**. Then in Storage Browser, expand **Blob containers** and select the **sampleforms** container to verify that the files have been uploaded from your local **02-custom-document-intelligence/sample-forms** folder.
 
 ## Train the model using Document Intelligence Studio
 
 Now you will train the model using the files uploaded to the storage account.
 
-1. In your browser, navigate to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio) and sign into your subscription.
-1. Scroll down to **Custom models** and create a new **Custom extraction model**.
-1. Create a new project:
+1. In your browser, navigate to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
+1. Scroll down to the **Custom models** section and select the **Custom extraction model** tile.
+1. If you are asked to sign into your account, use your Azure credentials.
+1. If you are asked which Azure AI Document Intelligence resource to use, select the subscription and resource name you used when you created the Azure AI Document Intelligence resource.
+1. Under **My Projects**, select **Create a project**. Use the following configurations:
 
     - **Project name**: Enter a unique name.
         - Select *Continue*.
-    - **Configure service resource**: Select the subscription, resource group, and document intelligence resource you created previously in this lab.
+    - **Configure service resource**: Select the subscription, resource group, and document intelligence resource you created previously in this lab. Check the *Set as default* box. Keep the default API version. 
         - Select *Continue*.
-    - **Connect training data source**: Select the subscription, resource group, and storage account that was created by the setup script. Select the `sampleforms` blob container, and leave the folder path blank.
+    - **Connect training data source**: Select the subscription, resource group, and storage account that was created by the setup script. Check the *Set as default* box. Select the `sampleforms` blob container, and leave the folder path blank.
         - Select *Continue*.
     - Select *Create project*
 
-1. Once your project is created, select **Train** to train your model. Provide a model ID (which you'll need in the next step) and choose *Template* build mode.
+1. Once your project is created, select **Train** to train your model. Use the following configurations:
+    - **Model ID**: *Provide a globally unique name (you'll need the model ID name in the next step)*. 
+    - **Build Mode**: Template.
 1. Training can take some time. You'll see a notification when it's complete.
 
 ## Test your custom Document Intelligence model
 
-1. In the integrated terminal, install the Document Intelligence package by running the appropriate command for your language preference:
+1. Return to Visual Studio Code. In the terminal, install the Document Intelligence package by running the appropriate command for your language preference:
 
     **C#**:
 
