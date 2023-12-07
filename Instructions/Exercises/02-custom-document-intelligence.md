@@ -27,7 +27,7 @@ Now let's use the service SDK to develop an app using Visual Studio Code. The co
 
 To use the Azure AI Document Intelligence service, you need a Azure AI Document Intelligence or Azure AI Services resource in your Azure subscription. You'll use the Azure portal to create a resource.
 
-1. In a browser tab, open the Azure portal at [https://portal.azure.com](https://portal.azure.com?azure-portal=true), signing in with the Microsoft account associated with your Azure subscription.
+1. In a browser tab, open the Azure portal at `https://portal.azure.com`, signing in with the Microsoft account associated with your Azure subscription.
 1. On the Azure portal home page, navigate to the top search box and type **Document Intelligence** and then press **Enter**.
 1. On the **Document Intelligence** page, select **Create**.
 1. On the **Create Document Intelligence** page, use the following to configure your resource:
@@ -109,7 +109,7 @@ Then **save** your changes.
 
 Now you will train the model using the files uploaded to the storage account.
 
-1. In your browser, navigate to the [Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
+1. In your browser, navigate to the Document Intelligence Studio at `https://documentintelligence.ai.azure.com/studio`.
 1. Scroll down to the **Custom models** section and select the **Custom extraction model** tile.
 1. If you are asked to sign into your account, use your Azure credentials.
 1. If you are asked which Azure AI Document Intelligence resource to use, select the subscription and resource name you used when you created the Azure AI Document Intelligence resource.
