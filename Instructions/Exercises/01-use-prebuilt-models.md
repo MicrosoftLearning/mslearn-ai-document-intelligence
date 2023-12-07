@@ -64,9 +64,9 @@ Applications for both C# and Python have been provided, as well as a sample pdf 
 
     ![Screenshot showing a sample invoice document.](../media/sample-invoice.png#lightbox)
 
-1. In Visual Studio Code, in the **Explorer** pane, browse to the **Labfiles/01-prebuild-models** folder and expand the **CSharp** or **Python** folder depending on your language preference. Each folder contains the language-specific files for an app into which you're you're going to integrate Azure OpenAI functionality.
+1. In Visual Studio Code, in the **Explorer** pane, browse to the **Labfiles/01-prebuild-models** folder and expand the **CSharp** or **Python** folder depending on your language preference. Each folder contains the language-specific files for an app into which you're you're going to integrate Azure Document Intelligence functionality.
 
-1. Right-click the **CSharp** or **Python** folder containing your code files and select **Open an integrated terminal**. Then install the Azure Form Recognizer SDK package by running the appropriate command for your language preference:
+1. Right-click the **CSharp** or **Python** folder containing your code files and select **Open an integrated terminal**. Then install the Azure Form Recognizer (the previous name for Document Intelligence) SDK package by running the appropriate command for your language preference:
 
     **C#**:
 
@@ -80,9 +80,9 @@ Applications for both C# and Python have been provided, as well as a sample pdf 
     pip install azure-ai-formrecognizer==3.3.0
     ```
 
-## Add code to use the Azure OpenAI service
+## Add code to use the Azure Document Intelligence service
 
-Now you're ready to use the Azure Form Recognizer SDK to evaluate the pdf file.
+Now you're ready to use the SDK to evaluate the pdf file.
 
 1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. On the left pane, under *Resource Management*, select **Keys and Endpoint**. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
 1. In the **Explorer** pane, in the **CSharp** or **Python** folder, open the code file for your preferred language, and replace `<Endpoint URL>` with the string you just copied:
