@@ -7,14 +7,14 @@ GREEN=$(tput setaf 2)
 # Set up the resource group
 resourceGroupName=FormsRecognizerResources
 printf "${GREEN}Setting up the FormsRecognizerResources resource group. \n${NORMAL}"
-az group create --location westus2 --name FormsRecognizerResources
+az group create --location westus2 --name $resourceGroupName
 
 # Create a name for the storage account
 storageAccName=formsrecstorage$((10000 + RANDOM % 99999))
 
 # Set up the Azure Storage account
 printf "${GREEN}Setting up the $storageAccName storage account. \n${NORMAL}"
-az storage account create --name $storageAccName --resource-group $resourceGroupName --kind StorageV2 --sku Standard_LRS
+az storage account create --name $storageAccName --resource-group $resourceGroupName --kind StorageV2 --sku Standard_LRS --allow-blob-public-access true
 
 # Get the connection string for the new storage account
 connectionString=$(az storage account show-connection-string --name $storageAccName --key primary --query connectionString)
@@ -38,6 +38,6 @@ az storage blob upload-batch -d testdoc --account-name $storageAccName --connect
 printf "${GREEN} Setting up the Forms Recognizer resource. \n${NORMAL}"
 # First, purge it in case there's a recently deleted one
 SubID=$(az account show --query id --output tsv)
-az resource delete --ids "/subscriptions/${SubID}/providers/Microsoft.CognitiveServices/locations/westus/resourceGroups/${resourceGroupName}/deletedAccounts/FormsRecognizer"
+az cognitiveservices account purge --location westus2 --resource-group ${resourceGroupName} --name FormsRecognizer
 # Now, create the new one
 az cognitiveservices account create --kind FormRecognizer --location westus2 --name FormsRecognizer --resource-group $resourceGroupName --sku F0 --yes
