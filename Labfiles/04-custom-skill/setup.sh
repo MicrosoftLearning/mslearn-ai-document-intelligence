@@ -22,6 +22,6 @@ printf "${GREEN}Setting up Azure Cognitive Search. \n${NORMAL}"
 # Purge any existing search resource with the same name
 az resource delete --ids "/subscriptions/${SubID}/resourceGroups/${resourceGroupName}/providers/Microsoft.Search/searchServices/enrichedcognitivesearch"
 # Now, create the new one
-az search service create --name enrichedcognitivesearch --location westus --resource-group $resourceGroupName --sku Free --partition-count 1 --replica-count 1
+az search service create --name enrichedcognitive7search --location westus --resource-group $resourceGroupName --sku Free --partition-count 1 --replica-count 1
 
 printf "${GREEN}Setup completed. \n${NORMAL}"
