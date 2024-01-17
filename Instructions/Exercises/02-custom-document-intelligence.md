@@ -1,10 +1,10 @@
 ---
 lab:
     title: 'Extract Data from Forms'
-    module: 'Module 11 - Reading Text in Images and Documents'
+    module: 'Module 6 - Document Intelligence'
 ---
 
-# Extract Data from Forms 
+# Extract Data from Forms
 
 Suppose a company currently requires employees to manually purchase order sheets and enter the data into a database. They would like you to utilize AI services to improve the data entry process. You decide to build a machine learning model that will read the form and produce structured data that can be used to automatically update a database.
 

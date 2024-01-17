@@ -1,7 +1,7 @@
 ---
 lab:
     title: 'Use prebuilt Document Intelligence models'
-    module: 'Module 11 - Reading Text in Images and Documents'
+    module: 'Module 6 - Document Intelligence'
 ---
 
 # Use prebuilt Document Intelligence models
