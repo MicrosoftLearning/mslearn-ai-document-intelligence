@@ -17,11 +17,14 @@ We'll use a script to create the Azure AI Document Intelligence resource, a stor
 1. When the repository has been cloned, open the folder in Visual Studio Code.
 
     > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**. If there are any other pop ups from Visual Studio Code, you can safely dismiss them.
-1. Right click on the **03-composed-model** directory, open in the integrated terminal, and execute the setup script:
+
+1. Expand the **Labfiles** folder in the left pane, and right click on the **03-composed-model** directory. Select the option to open in the integrated terminal, and execute the following script:
 
     ```powershell
     az login --output none
     ```
+
+    > **Note**: If you get an error about no active subscriptions and have MFA enabled, you may need to login to Azure portal at `https://portal.azure.com` first, then rerun the `az login`.
 
 1. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
 1. In the integrated terminal, run the following command to set up resources:
@@ -34,27 +37,28 @@ We'll use a script to create the Azure AI Document Intelligence resource, a stor
 
 To create a composed model, we must first create two or more custom models. To create the first custom model:
 
-1. In a new browser tab, start the [Azure AI Document Intelligence Studio](https://formrecognizer.appliedai.azure.com/studio).
-1. Scroll down, and then under **Custom model**, select **Custom model**.
+1. In a new browser tab, start the **Azure AI Document Intelligence Studio** at `https://documentintelligence.ai.azure.com/studio`
+1. Scroll down, and then under **Custom models**, select **Custom extraction model**.
 1. If you're asked to sign into your account, use your Azure credentials.
 1. If you're asked which Azure AI Document Intelligence resource to use, select the subscription and resource name you used when you created the Azure AI Document Intelligence resource.
 1. Under **My Projects**, select **+ Create a project**.
 1. In the **Project name** textbox, type **1040 Forms**, and then select **Continue**.
 1. On the **Configure service resource** page, in the **Subscription** drop-down list, select your Azure subscription.
-1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources**.
-1. In the **Azure AI Document Intelligence or Azure AI Service Resource** drop-down list, select **DocumentIntelligence**
-1. In the **API version** drop-down list, ensure that **2022-06-30-preview** is selected and then select **Continue**.
-1. On the **Configure training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
-1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources**.
-1. In the **Storage account** drop-down list, select the only storage account listed.
+1. In the **Resource group** drop-down list, select the **DocumentIntelligenceResources&lt;xxxx&gt** created for you.
+1. In the **Azure AI Document Intelligence or Azure AI Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt**
+1. In the **API version** drop-down list, ensure that **2023-10-31-preview** is selected and then select **Continue**.
+1. On the **Connect training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt**.
+1. In the **Storage account** drop-down list, select the only storage account listed. If you have multiple storage accounts in your subscription, choose the one starting with *docintelstorage*
 1. In the **Blob container** drop-down list, select **1040examples**, and then select **Continue**.
 1. In the **Review and create** page, select **Create project**.
+1. Select **Run layout** in the *Start labeling now* pop up, and wait for the analysis to complete.
 
 ## Label the 1040 Forms custom model
 
 Now, let's label the fields in the example forms:
 
-1. In the **Label data** page, in the top-right of the page, select **+**, and then select **Field**.
+1. In the **Label data** page, in the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **FirstName** and then press *Enter*.
 1. In the document, select **John** and then select **FirstName**.
 1. In the top-right of the page, select **+**, and then select **Field**.
@@ -66,7 +70,7 @@ Now, let's label the fields in the example forms:
 1. In the top-right of the page, select **+**, and then select **Field**.
 1. Type **State** and then press *Enter*.
 1. In the document, select **CA** and then select **State**.
-1. Repeat the labeling process for the remaining forms in the list on the left. Label the same four fields: *FirstName*, *LastName*, *City*, and *State*.
+1. Repeat the labeling process for the remaining forms in the list on the left, using the labels you created. Label the same four fields: *FirstName*, *LastName*, *City*, and *State*.
 
 > **IMPORTANT**
 > For the purposes of this exercise, we're using only five example forms and labeling only four fields. In your real-world models, you should use as many samples as possible to maximize the accuracy and confidence of your predictions. You should also label all the available fields in the forms, rather than just four fields.
@@ -84,18 +88,19 @@ Now that the sample forms are labeled, we can train the first custom model:
 
 Now, you must create a second model, which you'll train on example 1099 tax forms:
 
-1. In Azure AI Document Intelligence Studio, select **Custom model**.
+1. In Azure AI Document Intelligence Studio, select **Custom extraction model**.
 1. Under **My Projects**, select **+ Create a project**.
 1. In the **Project name** textbox, type **1099 Forms**, and then select **Continue**.
 1. On the **Configure service resource** page, in the **Subscription** drop-down list, select your Azure subscription.
-1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources**.
-1. In the **Azure AI Document Intelligence or Azure AI Service Resource** drop-down list, select **DocumentIntelligence**
-1. In the **API version** drop-down list, ensure that **2022-06-30-preview** is selected and then select **Continue**.
-1. On the **Configure training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
-1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources**.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt**.
+1. In the **Azure AI Document Intelligence or Azure AI Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt**
+1. In the **API version** drop-down list, ensure that **20223-10-31-preview** is selected and then select **Continue**.
+1. On the **Connnect training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt**.
 1. In the **Storage account** drop-down list, select the only storage account listed.
 1. In the **Blob container** drop-down list, select **1099examples**, and then select **Continue**.
 1. In the **Review and create** page, select **Create project**.
+1. Select **Run layout** in the *Start labeling now* pop up, and wait for the analysis to complete.
 
 ## Label the 1099 Forms custom model
 
