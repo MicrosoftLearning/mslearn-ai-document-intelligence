@@ -142,10 +142,10 @@ The two custom models, which analyze 1040 and 1099 tax forms, are now complete. 
 
 Now that the composed model is complete, let's test it with an example form:
 
-1. In the Azure AI Document Intelligence Studio, select **TaxFormsModel**, and then select **Test**.
-1. Select **+ Add** and then browse to the location where you cloned the repository.
+1. In the Azure AI Document Intelligence Studio, select the **Test** page, select the  **TaxFormsModel** from the dropdown.
+1. Select **Browse for files** and then browse to the location where you cloned the repository.
 1. Select **03-composed-model/trainingdata/TestDoc/f1040_7.pdf**, and then select **Open**.
-1. Select **Analyze**. Azure AI Document Intelligence analyses the form by using the composed model.
+1. Select **Run analyze**. Azure AI Document Intelligence analyses the form by using the composed model.
 1. The document you analyzed is an example of the 1040 tax form. Check the **DocType** property to see if the correct custom model has been used. Also check the **FirstName**, **LastName**, **City**, and **State** values identified by the model.
 
 ## Clean up resources
