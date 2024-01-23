@@ -44,11 +44,11 @@ To create a composed model, we must first create two or more custom models. To c
 1. Under **My Projects**, select **+ Create a project**.
 1. In the **Project name** textbox, type **1040 Forms**, and then select **Continue**.
 1. On the **Configure service resource** page, in the **Subscription** drop-down list, select your Azure subscription.
-1. In the **Resource group** drop-down list, select the **DocumentIntelligenceResources&lt;xxxx&gt** created for you.
-1. In the **Azure AI Document Intelligence or Azure AI Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt**
+1. In the **Resource group** drop-down list, select the **DocumentIntelligenceResources&lt;xxxx&gt;** created for you.
+1. In the **Azure AI Document Intelligence or Azure AI Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt;**.
 1. In the **API version** drop-down list, ensure that **2023-10-31-preview** is selected and then select **Continue**.
 1. On the **Connect training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
-1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt**.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
 1. In the **Storage account** drop-down list, select the only storage account listed. If you have multiple storage accounts in your subscription, choose the one starting with *docintelstorage*
 1. In the **Blob container** drop-down list, select **1040examples**, and then select **Continue**.
 1. In the **Review and create** page, select **Create project**.
@@ -92,11 +92,11 @@ Now, you must create a second model, which you'll train on example 1099 tax form
 1. Under **My Projects**, select **+ Create a project**.
 1. In the **Project name** textbox, type **1099 Forms**, and then select **Continue**.
 1. On the **Configure service resource** page, in the **Subscription** drop-down list, select your Azure subscription.
-1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt**.
-1. In the **Azure AI Document Intelligence or Azure AI Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt**
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
+1. In the **Azure AI Document Intelligence or Azure AI Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt;**.
 1. In the **API version** drop-down list, ensure that **20223-10-31-preview** is selected and then select **Continue**.
 1. On the **Connnect training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
-1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt**.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
 1. In the **Storage account** drop-down list, select the only storage account listed.
 1. In the **Blob container** drop-down list, select **1099examples**, and then select **Continue**.
 1. In the **Review and create** page, select **Create project**.
@@ -145,7 +145,7 @@ Now that the composed model is complete, let's test it with an example form:
 1. In the Azure AI Document Intelligence Studio, select the **Test** page, select the  **TaxFormsModel** from the dropdown.
 1. Select **Browse for files** and then browse to the location where you cloned the repository.
 1. Select **03-composed-model/trainingdata/TestDoc/f1040_7.pdf**, and then select **Open**.
-1. Select **Run analyze**. Azure AI Document Intelligence analyses the form by using the composed model.
+1. Select **Run analysis**. Azure AI Document Intelligence analyses the form by using the composed model.
 1. The document you analyzed is an example of the 1040 tax form. Check the **DocType** property to see if the correct custom model has been used. Also check the **FirstName**, **LastName**, **City**, and **State** values identified by the model.
 
 ## Clean up resources
