@@ -33,6 +33,8 @@ We'll use a script to create the Azure AI Document Intelligence resource, a stor
    ./setup.ps1
    ```
 
+   > **IMPORTANT**: The last resource created by the script is your Azure AI Document Intelligence service. If that command fails due to you already having an F0 tier resource, either use that resource for this lab or create one manually using the S0 tier in the Azure portal.
+
 ## Create the 1040 Forms custom model
 
 To create a composed model, we must first create two or more custom models. To create the first custom model:
