@@ -17,7 +17,7 @@ printf "${GREEN}Setting up the $storageAccName storage account. \n${NORMAL}"
 az storage account create --name $storageAccName --resource-group $resourceGroupName --kind StorageV2 --sku Standard_LRS
 
 # Get the connection string for the new storage account
-connectionString=$(az storage account show-connection-string --name $storageAccName --key primary --query connectionString)
+connectionString=$(az storage account show-connection-string --name $storageAccName --key key1 --resource-group $resourceGroupName --query connectionString)
 
 # Enable CORS on the storage account
 az storage cors add --methods DELETE GET HEAD MERGE OPTIONS POST PUT --origins * --services b --allowed-headers * --max-age 200 --exposed-headers * --connection-string $connectionString
