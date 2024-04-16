@@ -36,10 +36,11 @@ Let's start by using the **Azure AI Document Intelligence Studio** and the Read 
 
     ![Screenshot showing the Read page in Azure AI Document Intelligence Studio.](../media/read-german-sample.png#lightbox)
 
+1. At the top-left, select **Analyze options**, then enable the **Language** check-box (under **Optional detection**) in the **Analyze options** pane and click on **Save**. 
 1. At the top-left, select **Run Analysis**.
 1. When the analysis is complete, the text extracted from the image is shown on the right in the **Content** tab. Review this text and compare it to the text in the original image for accuracy.
 1. Select the **Result** tab. This tab displays the extracted JSON code. 
-1. Scroll to the bottom of the JSON code in the **Result** tab. Notice that the read model has detected the language of each span. Most spans are in German (language code `de`) but the last span is in English (language code `en`).
+1. Scroll to the bottom of the JSON code in the **Result** tab. Notice that the read model has detected the language of each span. Most spans are in German (language code `de`) but you can find other language codes in the spans (e.g. English - language code `en` - in one of the last span).
 
     ![Screenshot showing the detection of language for two spans in the results from the read model in Azure AI Document Intelligence Studio.](../media/language-detection.png#lightbox)
 
