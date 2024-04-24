@@ -32,7 +32,7 @@ Let's start by using the **Azure AI Document Intelligence Studio** and the Read 
 1. Under **Document Analysis**, select the **Read** tile.
 1. If you are asked to sign into your account, use your Azure credentials.
 1. If you are asked which Azure AI Document Intelligence resource to use, select the subscription and resource name you used when you created the Azure AI Document Intelligence resource.
-1. In the list of documents on the left, select **read-german.png**.
+1. In the list of documents on the left, select **read-german.pdf**.
 
     ![Screenshot showing the Read page in Azure AI Document Intelligence Studio.](../media/read-german-sample.png#lightbox)
 
