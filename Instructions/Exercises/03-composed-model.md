@@ -62,14 +62,14 @@ Now, let's label the fields in the example forms:
 
 1. In the **Label data** page, in the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **FirstName** and then press *Enter*.
-1. In the document, select **John** and then select **FirstName**.
-1. In the top-right of the page, select **+**, and then select **Field**.
+1. Select the document called **f1040_1.pdf** on the left list, select **John** and then select **FirstName**.
+1. In the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **LastName** and then press *Enter*.
 1. In the document, select **Doe** and then select **LastName**.
-1. In the top-right of the page, select **+**, and then select **Field**.
+1. In the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **City** and then press *Enter*.
 1. In the document, select **Los Angeles** and then select **City**.
-1. In the top-right of the page, select **+**, and then select **Field**.
+1. In the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **State** and then press *Enter*.
 1. In the document, select **CA** and then select **State**.
 1. Repeat the labeling process for the remaining forms in the list on the left, using the labels you created. Label the same four fields: *FirstName*, *LastName*, *City*, and *State*.
@@ -108,16 +108,16 @@ Now, you must create a second model, which you'll train on example 1099 tax form
 
 Now, label the example forms with some fields:
 
-1. In the **Label data** page, in the top-right of the page, select **+**, and then select **Field**.
+1. In the **Label data** page, in the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **FirstName** and then press *Enter*.
-1. In the document, select **John** and then select **FirstName**.
-1. In the top-right of the page, select **+**, and then select **Field**.
+1. Select the document called **f1099msc_payer.pdf**, select **John** and then select **FirstName**.
+1. In the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **LastName** and then press *Enter*.
 1. In the document, select **Doe** and then select **LastName**.
-1. In the top-right of the page, select **+**, and then select **Field**.
+1. In the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **City** and then press *Enter*.
 1. In the document, select **New Haven** and then select **City**.
-1. In the top-right of the page, select **+**, and then select **Field**.
+1. In the top-right of the page, select **+ Add a field**, and then select **Field**.
 1. Type **State** and then press *Enter*.
 1. In the document, select **CT** and then select **State**.
 1. Repeat the labeling process for the remaining forms in the list on the left. Label the same four fields: *FirstName*, *LastName*, *City*, and *State*.
