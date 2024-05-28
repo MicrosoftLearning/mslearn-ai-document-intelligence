@@ -16,6 +16,8 @@ We'll use a script to create the Azure AI Document Intelligence resource, a stor
 1. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence` repository to a local folder (it doesn't matter which folder).
 1. When the repository has been cloned, open the folder in Visual Studio Code.
 
+    > **Note**: If Visual Studio Code shows you a pop-up message to prompt you to trust the code you are opening, click on **Yes, I trust the authors** option in the pop-up.
+    
     > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**. If there are any other pop ups from Visual Studio Code, you can safely dismiss them.
 
 1. Expand the **Labfiles** folder in the left pane, and right click on the **03-composed-model** directory. Select the option to open in the integrated terminal, and execute the following script:
