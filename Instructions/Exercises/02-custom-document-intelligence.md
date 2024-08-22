@@ -126,9 +126,10 @@ Now you will train the model using the files uploaded to the storage account.
         - Select *Continue*.
     - Select *Create project*
 
-1. Once your project is created, select **Train** to train your model. Use the following configurations:
+1. Once your project is created, on the top right of the screen, select **Train** to train your model. Use the following configurations:
     - **Model ID**: *Provide a globally unique name (you'll need the model ID name in the next step)*. 
     - **Build Mode**: Template.
+1. Select **Go to Models**.
 1. Training can take some time. You'll see a notification when it's complete.
 
 ## Test your custom Document Intelligence model
@@ -144,7 +145,7 @@ Now you will train the model using the files uploaded to the storage account.
     **Python**:
 
     ```powershell
-    pip install azure-ai-formrecognizer==3.3.0
+    pip install azure-ai-formrecognizer==3.3.3
     ```
 
 1. In Visual Studio Code, in the **Labfiles/02-custom-document-intelligence** folder, select the language you are using. Edit the configuration file (**appsettings.json** or **.env**, depending on your language preference) with the following values:
