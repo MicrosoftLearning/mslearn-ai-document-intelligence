@@ -158,7 +158,7 @@ Now that you've created an analyzer, you can consume it from a client applicatio
 1. In the PowerShell pane, enter the following commands to clone the GitHub repo for this exercise:
 
     ```
-    rm -r mslearn-content -f
+    rm -r mslearn-ai-doc -f
     git clone https://github.com/microsoftlearning/mslearn-ai-document-intelligence mslearn-ai-doc
     ```
 
