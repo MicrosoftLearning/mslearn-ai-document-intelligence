@@ -97,11 +97,7 @@ Then **save** your changes.
 1. In the terminal for the **Labfiles/02-custom-document-intelligence** folder, enter the following command to run the script:
 
     ```PowerShell
-    $currentdir=(Get-Item .).FullName
-    cd ..
     ./setup.cmd
-    cd $currentdir
-
     ```
 
 1. When the script completes, review the displayed output.
