@@ -177,7 +177,7 @@ Now that you've created an analyzer, you can consume it from a client applicatio
 
     ![Screenshot of a code editor with Python code.](../media/code-editor.png)
 
-1. In the code file, replace the **<CONTENT_UNDERSTANDING_ENDPOINT>** placeholder with your Content Understanding endpoint, and the **<CONTENT_UNDERSTANDING_KEY>** placeholder with one of the keys for your Azure AI services resource.
+1. In the code file, replace the **\<CONTENT_UNDERSTANDING_ENDPOINT\>** placeholder with your Content Understanding endpoint, and the **\<CONTENT_UNDERSTANDING_KEY\>** placeholder with one of the keys for your Azure AI services resource.
 
     > **Tip**: You'll need to resize or minimize the cloud shell window to copy the endoint and key from the Azure AI services resource page in the Azure portal - be careful not to *close* the cloud shell (or you'll need to repeat the steps above)
 
