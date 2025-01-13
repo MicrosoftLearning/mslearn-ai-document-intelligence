@@ -201,7 +201,7 @@ Now that you've created an analyzer, you can consume it from a client applicatio
 
 1. Review the output from the program, which includes the JSON results of the document analysis.
 
-    > **Tip**: The screen buffer in the cloud shell console may not be large enough to show the entire output. If you want to review the entire output, run the program using the command `python analyze_doc.py > output.txt`. Then, when the program finished, use the command `code output.txt` to open the output in a code editor.
+    > **Tip**: The screen buffer in the cloud shell console may not be large enough to show the entire output. If you want to review the entire output, run the program using the command `python analyze_doc.py > output.txt`. Then, when the program finishes, use the command `code output.txt` to open the output in a code editor.
 
 ## Clean up
 
