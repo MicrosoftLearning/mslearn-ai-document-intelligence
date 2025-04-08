@@ -6,83 +6,133 @@ lab:
 
 # Use prebuilt Document Intelligence models
 
-In this exercise, you'll set up an Azure AI Document Intelligence resource in your Azure subscription. You'll use both the Azure AI Document Intelligence Studio and C# or Python to submit forms to that resource for analysis.
+In this exercise, you'll set up an Azure AI Foundry project with all the necessary resources for document analysis. You'll use both the Azure AI Foundry and C# or Python to submit forms to that resource for analysis.
 
-## Create an Azure AI Document Intelligence resource
+## Create an Azure AI Foundry project
 
-Before you can call the Azure AI Document Intelligence service, you must create a resource to host that service in Azure:
+Let's start by creating an Azure AI Foundry project.
 
-1. In a browser tab, open the Azure portal at [https://portal.azure.com](https://portal.azure.com?azure-portal=true), signing in with the Microsoft account associated with your Azure subscription.
-1. On the Azure portal home page, navigate to the top search box and type **Document Intelligence** and then press **Enter**.
-1. On the **Document Intelligence** page, select **Create Document Intelligence**.
-1. On the **Create Document Intelligence** page, use the following to configure your resource:
-    - **Subscription**: Your Azure subscription.
-    - **Resource group**: Select or create a resource group with a unique name such as *DocIntelligenceResources*.
-    - **Region**: select a region near you.
-    - **Name**: Enter a globally unique name.
-    - **Pricing tier**: select **Free F0** (if you don't have a Free tier available, select **Standard S0**).
-1. Then select **Review + create**, and **Create**. Wait while Azure creates the Azure AI Document Intelligence resource.
-1. When the deployment is complete, select **Go to resource**. Keep this page open for the rest of this exercise.
+1. In a web browser, open the [Azure AI Foundry portal](https://ai.azure.com) at `https://ai.azure.com` and sign in using your Azure credentials. Close any tips or quick start panes that are opened the first time you sign in, and if necessary use the **Azure AI Foundry** logo at the top left to navigate to the home page, which looks similar to the following image:
+
+    ![Screenshot of Azure AI Foundry portal.](./media/ai-foundry-home.png)
+
+1. In the home page, select **+ Create project**.
+1. In the **Create a project** wizard, enter a suitable project name for (for example, `my-ai-project`) then review the Azure resources that will be automatically created to support your project.
+1. Select **Customize** and specify the following settings for your hub:
+    - **Hub name**: *A unique name - for example `my-ai-hub`*
+    - **Subscription**: *Your Azure subscription*
+    - **Resource group**: *Create a new resource group with a unique name (for example, `my-ai-resources`), or select an existing one*
+    - **Location**: Choose any available region
+    - **Connect Azure AI Services or Azure OpenAI**: *Create a new AI Services resource with an appropriate name (for example, `my-ai-services`) or use an existing one*
+    - **Connect Azure AI Search**: Skip connecting
+
+1. Select **Next** and review your configuration. Then select **Create** and wait for the process to complete.
+1. When your project is created, close any tips that are displayed and review the project page in Azure AI Foundry portal, which should look similar to the following image:
+
+    ![Screenshot of a Azure AI project details in Azure AI Foundry portal.](./media/ai-foundry-project.png)
 
 ## Use the Read model
 
-Let's start by using the **Azure AI Document Intelligence Studio** and the Read model to analyze a document with multiple languages. You'll connect Azure AI Document Intelligence Studio to the resource you just created to perform the analysis:
+Let's start by using the **Azure AI Foundry** portal and the Read model to analyze a document with multiple languages:
 
-1. Open a new browser tab and go to the **Azure AI Document Intelligence Studio** at [https://documentintelligence.ai.azure.com/studio](https://documentintelligence.ai.azure.com/studio).
-1. Under **Document Analysis**, select the **Read** tile.
-1. If you are asked to sign into your account, use your Azure credentials.
-1. If you are asked which Azure AI Document Intelligence resource to use, select the subscription and resource name you used when you created the Azure AI Document Intelligence resource.
+1. In the navigation panel on the left, select **AI Services**.
+1. In the **Azure AI Services** page, select the **Vision + Document** tile.
+1. In the **Vision + Document** page, verify that the **Document** tab is selected, then select the **OCR/Read** tile.
+
+    In the **Read** page, the Azure AI Services resource created with your project should already be connected.
+
 1. In the list of documents on the left, select **read-german.pdf**.
 
-    ![Screenshot showing the Read page in Azure AI Document Intelligence Studio.](../media/read-german-sample.png#lightbox)
+    ![Screenshot showing the Read page in Azure AI Document Intelligence Studio.](./media/read-german-sample.png#lightbox)
 
-1. At the top-left, select **Analyze options**, then enable the **Language** check-box (under **Optional detection**) in the **Analyze options** pane and click on **Save**. 
+1. At the top toolbar, select **Analyze options**, then enable the **Language** check-box (under **Optional detection**) in the **Analyze options** pane and click on **Save**. 
 1. At the top-left, select **Run Analysis**.
 1. When the analysis is complete, the text extracted from the image is shown on the right in the **Content** tab. Review this text and compare it to the text in the original image for accuracy.
 1. Select the **Result** tab. This tab displays the extracted JSON code. 
-1. Scroll to the bottom of the JSON code in the **Result** tab. Notice that the read model has detected the language of each span indicated by `locale`. Most spans are in German (language code `de`) but you can find other language codes in the spans (e.g. English - language code `en` - in one of the last span).
+1. Scroll to the bottom of the JSON code in the **Result** tab. Notice that the read model has detected the language of each span indicated by `locale`. Most spans are in German (language code `de`) but you can find other language codes in the spans (e.g. English - language code `en` - in one of the first span).
 
-    ![Screenshot showing the detection of language for two spans in the results from the read model in Azure AI Document Intelligence Studio.](../media/language-detection.png#lightbox)
+    ![Screenshot showing the detection of language for two spans in the results from the read model in Azure AI Document Intelligence Studio.](./media/language-detection.png#lightbox)
 
-## Prepare to develop an app in Visual Studio Code
+## Prepare to develop an app in Cloud Shell
 
-Now let's explore the app that uses the Azure Document Intelligence service SDK. You'll develop your app using Visual Studio Code. The code files for your app have been provided in a GitHub repo.
+Now let's explore the app that uses the Azure Document Intelligence service SDK. You'll develop your app using Cloud Shell. The code files for your app have been provided in a GitHub repo.
 
-> **Tip**: If you have already cloned the **mslearn-ai-document-intelligence** repo, open it in Visual Studio code. Otherwise, follow these steps to clone it to your development environment.
+> **Tip**: If you have already cloned the **mslearn-ai-document-intelligence** repo, you can skip this task. Otherwise, follow these steps to clone it to your development environment.
 
-1. Start Visual Studio Code.
-1. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence` repository to a local folder (it doesn't matter which folder).
-1. When the repository has been cloned, open the folder in Visual Studio Code.
+1. In the Azure AI Foundry portal, view the **Overview** page for your project.
+1. In the **Project details** area, note the **Project connection string** and **location** for your project You'll use the connection string to connect to your project in a client application, and you'll need the location to connect to the Azure AI Services Speech endpoint.
+1. Open a new browser tab (keeping the Azure AI Foundry portal open in the existing tab). Then in the new tab, browse to the [Azure portal](https://portal.azure.com) at `https://portal.azure.com`; signing in with your Azure credentials if prompted.
+1. Use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal.
 
-    > **Note**: If Visual Studio Code shows you a pop-up message to prompt you to trust the code you are opening, click on **Yes, I trust the authors** option in the pop-up.
+    > **Note**: If you have previously created a cloud shell that uses a *Bash* environment, switch it to ***PowerShell***.
 
-1. Wait while additional files are installed to support the C# code projects in the repo.
+1. In the cloud shell toolbar, in the **Settings** menu, select **Go to Classic version** (this is required to use the code editor).
 
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**. If you are prompted with the Message *Detected an Azure Function Project in folder*, you can safely close that message.
+    > **Tip**: As you paste commands into the cloudshell, the ouput may take up a large amount of the screen buffer. You can clear the screen by entering the `cls` command to make it easier to focus on each task.
 
-## Configure your application
+1. In the PowerShell pane, enter the following commands to clone the GitHub repo for this exercise:
+
+    ```
+   rm -r mslearn-ai-document-intelligence -f
+   git clone https://github.com/microsoftlearning/mslearn-ai-document-intelligence mslearn-ai-document-intelligence
+    ```
 
 Applications for both C# and Python have been provided, as well as a sample pdf file you'll use to test Document Intelligence. Both apps feature the same functionality. First, you'll complete some key parts of the application to enable using your Azure Document Intelligence resource.
 
 1. Examine the following invoice and note some of its fields and values. This is the invoice that your code will analyze.
 
-    ![Screenshot showing a sample invoice document.](../media/sample-invoice.png#lightbox)
+    ![Screenshot showing a sample invoice document.](./media/sample-invoice.png#lightbox)
 
-1. In Visual Studio Code, in the **Explorer** pane, browse to the **Labfiles/01-prebuild-models** folder and expand the **CSharp** or **Python** folder depending on your language preference. Each folder contains the language-specific files for an app into which you're you're going to integrate Azure Document Intelligence functionality.
+    ***Now follow the steps for your chosen programming language.***
 
-1. Right-click the **CSharp** or **Python** folder containing your code files and select **Open an integrated terminal**. Then install the Azure Form Recognizer (the previous name for Document Intelligence) SDK package by running the appropriate command for your language preference:
+1. After the repo has been cloned, navigate to the folder containing the code files:  
 
-    **C#**:
+    **C#**
 
-    ```powershell
-    dotnet add package Azure.AI.FormRecognizer --version 4.1.0
+    ```
+   cd mslearn-ai-document-intelligence/Labfiles/01b-prebuild-models/C-Sharp
     ```
 
-    **Python**:
+    **Python**
 
-    ```powershell
-    pip install azure-ai-formrecognizer==3.3.3
     ```
+   cd mslearn-ai-document-intelligence/Labfiles/01b-prebuild-models/Python
+    ```
+
+1. In the cloud shell command line pane, enter the following command to install the libraries you'll use:
+
+    **C#**
+
+    ```
+   dotnet add package Azure.Identity
+   dotnet add package Azure.AI.Projects --prerelease
+   dotnet add package Azure.AI.FormRecognizer --version 4.1.0
+    ```
+
+    **Python**
+
+    ```
+   pip install python-dotenv azure-identity azure-ai-projects azure-ai-formrecognizer==3.3.3
+    ```
+
+1. Enter the following command to edit the configuration file that has been provided:
+
+    **C#**
+
+    ```
+   code appsettings.json
+    ```
+
+    **Python**
+
+    ```
+   code .env
+    ```
+
+    The file is opened in a code editor.
+
+1. In the code file, replace the **your_project_endpoint** and **your_location** placeholders with the connection string and location for your project (copied from the project **Overview** page in the Azure AI Foundry portal).
+1. After you've replaced the placeholders, within the code editor, use the **CTRL+S** command or **Right-click > Save** to save your changes and then use the **CTRL+Q** command or **Right-click > Quit** to close the code editor while keeping the cloud shell command line open.
 
 ## Add code to use the Azure Document Intelligence service
 
