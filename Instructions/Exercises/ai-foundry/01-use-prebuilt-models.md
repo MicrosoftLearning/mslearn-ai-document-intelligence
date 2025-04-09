@@ -90,13 +90,13 @@ Applications for both C# and Python have been provided, as well as a sample pdf 
     **C#**
 
     ```
-   cd mslearn-ai-document-intelligence/Labfiles/01b-prebuild-models/C-Sharp
+   cd mslearn-ai-document-intelligence/Labfiles/01-prebuild-models/C-Sharp
     ```
 
     **Python**
 
     ```
-   cd mslearn-ai-document-intelligence/Labfiles/01b-prebuild-models/Python
+   cd mslearn-ai-document-intelligence/Labfiles/01-prebuild-models/Python
     ```
 
 1. In the cloud shell command line pane, enter the following command to install the libraries you'll use:
@@ -104,67 +104,48 @@ Applications for both C# and Python have been provided, as well as a sample pdf 
     **C#**
 
     ```
-   dotnet add package Azure.Identity
-   dotnet add package Azure.AI.Projects --prerelease
    dotnet add package Azure.AI.FormRecognizer --version 4.1.0
     ```
 
     **Python**
 
     ```
-   pip install python-dotenv azure-identity azure-ai-projects azure-ai-formrecognizer==3.3.3
+   pip install azure-ai-formrecognizer==3.3.3
     ```
-
-1. Enter the following command to edit the configuration file that has been provided:
-
-    **C#**
-
-    ```
-   code appsettings.json
-    ```
-
-    **Python**
-
-    ```
-   code .env
-    ```
-
-    The file is opened in a code editor.
-
-1. In the code file, replace the **your_project_endpoint** and **your_location** placeholders with the connection string and location for your project (copied from the project **Overview** page in the Azure AI Foundry portal).
-1. After you've replaced the placeholders, within the code editor, use the **CTRL+S** command or **Right-click > Save** to save your changes and then use the **CTRL+Q** command or **Right-click > Quit** to close the code editor while keeping the cloud shell command line open.
 
 ## Add code to use the Azure Document Intelligence service
 
 Now you're ready to use the SDK to evaluate the pdf file.
 
-1. Switch to the browser tab that displays the Azure AI Document Intelligence overview in the Azure portal. On the left pane, under *Resource Management*, select **Keys and Endpoint**. To the right of the **Endpoint** value, click the **Copy to clipboard** button.
-1. In the **Explorer** pane, in the **CSharp** or **Python** folder, open the code file for your preferred language, and replace `<Endpoint URL>` with the string you just copied:
+1. Enter the following command to edit the app file that has been provided:
+
+    **C#**
+
+    ```
+   code Program.cs
+    ```
+
+    **Python**
+
+    ```
+   code document-analysis.py
+    ```
+
+    The file is opened in a code editor.
+
+1. In the code file, replace the `<Endpoint URL>` and `<API Key>` placeholders with the **Azure AI Services endpoint** and **API Key** for your project (copied from the project **Overview** page, in the **Azure AI Services** capability option in the Azure AI Foundry portal):
 
     **C#**: ***Program.cs***
 
     ```csharp
     string endpoint = "<Endpoint URL>";
+    string apiKey = "<API Key>";
     ```
 
     **Python**: ***document-analysis.py***
 
     ```python
     endpoint = "<Endpoint URL>"
-    ```
-
-1. Switch to the browser tab that displays the Azure AI Document Intelligence **Keys and Endpoint** in the Azure portal. To the right of the **KEY 1** value, click the *Copy to clipboard** button.
-1. In the code file in Visual Studio Code, locate this line and replace `<API Key>` with the string you just copied:
-
-    **C#**
-
-    ```csharp
-    string apiKey = "<API Key>";
-    ```
-
-    **Python**
-
-    ```python
     key = "<API Key>"
     ```
 
@@ -235,9 +216,10 @@ Now you're ready to use the SDK to evaluate the pdf file.
     > [!NOTE]
     > You've added code to display the vendor name. The starter project also includes code to display the *customer name* and *invoice total*.
 
-1. Save the changes to the code file.
 
-1. In the interactive terminal pane, ensure the folder context is the folder for your preferred language. Then enter the following command to run the application.
+1. In the code editor, use the **CTRL+S** command or **Right-click > Save** to save your changes and then use the **CTRL+Q** command or **Right-click > Quit** to close the code editor while keeping the cloud shell command line open.
+
+1. In the command line pane, enter the following command to run the application.
 
 1. ***For C# only***, to build your project, enter this command:
 
