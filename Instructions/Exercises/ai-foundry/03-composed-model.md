@@ -55,7 +55,7 @@ To create a composed model, we must first create two or more custom models. To c
 1. On the **Configure service resource** page, in the **Subscription** drop-down list, select your Azure subscription.
 1. In the **Resource group** drop-down list, select the **DocumentIntelligenceResources&lt;xxxx&gt;** created for you.
 1. In the **Document Intelligence or Cognitive Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt;**.
-1. In the **API version** drop-down list, ensure that **2024-07-31 (Preview)** is selected and then select **Continue**.
+1. In the **API version** drop-down list, ensure that **2024-11-30 (4.0 General Availability)** is selected and then select **Continue**.
 1. On the **Connect training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
 1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
 1. In the **Storage account** drop-down list, select the only storage account listed. If you have multiple storage accounts in your subscription, choose the one starting with *docintelstorage*
@@ -103,7 +103,7 @@ Now, you must create a second model, which you'll train on example 1099 tax form
 1. On the **Configure service resource** page, in the **Subscription** drop-down list, select your Azure subscription.
 1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
 1. In the **Document Intelligence or Cognitive Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt;**.
-1. In the **API version** drop-down list, ensure that **2024-07-31 (Preview)** is selected and then select **Continue**.
+1. In the **API version** drop-down list, ensure that **2024-11-30 (4.0 General Availability)** is selected and then select **Continue**.
 1. On the **Connnect training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
 1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
 1. In the **Storage account** drop-down list, select the only storage account listed.
@@ -144,11 +144,12 @@ You can now train the second custom model:
 
 Now that the model is complete, let's test it with an example form:
 
+1. Download the test form at `https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence/raw/refs/heads/main/Labfiles/03-composed-model/trainingdata/TestDoc/f1040_7.pdf`.
 1. In the Azure AI Document Intelligence Studio, select the **Models** page, select the  **1040FormsModel**.
 1. Select **Test**.
-1. Select **Browse for files** and then browse to the location where you cloned the repository.
-1. Select **03-composed-model/trainingdata/TestDoc/f1040_7.pdf**, and then select **Open**.
-1. Select **Run analysis**. Azure AI Document Intelligence analyses the form by using the composed model.
+1. Select **Browse for files** and then browse to the location where you downloaded the form.
+1. Select **f1040_7.pdf**, and then select **Open**.
+1. Select **Run analysis**. Azure AI Document Intelligence analyses the form by using the custom model.
 1. The document you analyzed is an example of the 1040 tax form. Check the **DocType** property to see if the correct custom model has been used. Also check the **FirstName**, **LastName**, **City**, and **State** values identified by the model.
 
 ## Clean up resources
