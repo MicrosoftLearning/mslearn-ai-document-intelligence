@@ -4,7 +4,7 @@
 subscription_id="YOUR_SUBSCRIPTION_ID"
 resource_group="YOUR_RESOURCE_GROUP"
 location="YOUR_LOCATION_NAME"
-expiry_date="2024-01-01T00:00:00Z"
+expiry_date="2026-01-01T00:00:00Z"
 
 # Get random numbers to create unique resource names
 unique_id=$((1 + RANDOM % 99999))
