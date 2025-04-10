@@ -12,24 +12,29 @@ In this exercise, you'll create and train two custom models that analyze differe
 
 We'll use a script to create the Azure AI Document Intelligence resource, a storage account with sample forms, and a resource group:
 
-1. Start Visual Studio Code.
-1. Open the palette (SHIFT+CTRL+P) and run a **Git: Clone** command to clone the `https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence` repository to a local folder (it doesn't matter which folder).
-1. When the repository has been cloned, open the folder in Visual Studio Code.
+1. In a browser tab, open the Azure portal at `https://portal.azure.com`, signing in with the Microsoft account associated with your Azure subscription.
+1. Once signed in, use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal.
 
-    > **Note**: If Visual Studio Code shows you a pop-up message to prompt you to trust the code you are opening, click on **Yes, I trust the authors** option in the pop-up.
-    
-    > **Note**: If you are prompted to add required assets to build and debug, select **Not Now**. If there are any other pop ups from Visual Studio Code, you can safely dismiss them.
+    > **Note**: If you have previously created a cloud shell that uses a *Bash* environment, switch it to ***PowerShell***.
 
-1. Expand the **Labfiles** folder in the left pane, and right click on the **03-composed-model** directory. Select the option to open in the integrated terminal, and execute the following script:
+1. In the cloud shell toolbar, in the **Settings** menu, select **Go to Classic version** (this is required to use the code editor).
 
-    ```powershell
-    az login --output none
+    > **Tip**: As you paste commands into the cloudshell, the ouput may take up a large amount of the screen buffer. You can clear the screen by entering the `cls` command to make it easier to focus on each task.
+
+1. In the PowerShell pane, enter the following commands to clone the GitHub repo for this exercise:
+
+    ```
+    rm -r mslearn-ai-document-intelligence -f
+    git clone https://github.com/microsoftlearning/mslearn-ai-document-intelligence mslearn-ai-document-intelligence
     ```
 
-    > **Note**: If you get an error about no active subscriptions and have MFA enabled, you may need to login to Azure portal at `https://portal.azure.com` first, then rerun the `az login`.
+1. After the repo has been cloned, navigate to the folder containing this exercise's files:  
 
-1. When prompted, sign into your Azure subscription. Then return to Visual Studio Code and wait for the sign-in process to complete.
-1. In the integrated terminal, run the following command to set up resources:
+    ```
+   cd mslearn-ai-document-intelligence/Labfiles/03-composed-model
+    ```
+
+1. Run the following command to set up resources:
 
    ```powershell
    ./setup.ps1
