@@ -60,7 +60,7 @@ Now let's explore the app that uses the Azure Document Intelligence service SDK.
 > **Tip**: If you have already cloned the **mslearn-ai-document-intelligence** repo, you can skip this task. Otherwise, follow these steps to clone it to your development environment.
 
 1. In the Azure AI Foundry portal, view the **Overview** page for your project.
-1. In the **Endpoints and keys** area, note the **API Key** and **Azure AI Services enpoint** under the **Azure AI Services** option. You'll use these credentials to connect to your Azure AI Services in a client application.
+1. In the **Endpoints and keys** area, note the **API Key** and **Azure AI Services endpoint** under the **Azure AI Services** option. You'll use these credentials to connect to your Azure AI Services in a client application.
 1. Open a new browser tab (keeping the Azure AI Foundry portal open in the existing tab). Then in the new tab, browse to the [Azure portal](https://portal.azure.com) at `https://portal.azure.com`; signing in with your Azure credentials if prompted.
 1. Use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal.
 
