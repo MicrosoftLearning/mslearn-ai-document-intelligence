@@ -88,7 +88,7 @@ Now, let's label the fields in the example forms:
 
 Now that the sample forms are labeled, we can train the first custom model:
 
-1. In the Azure AI Document Intelligence Studio,on the top right of the screen, select **Train**.
+1. In the Azure AI Document Intelligence Studio, on the top right of the screen, select **Train**.
 1. In the **Train a new model** dialog, in the **Model ID** textbox, type **1040FormsModel**.
 1. In the **Build mode** drop-down list, select **Template**, and then select **Train**. 
 1. In the **Training in progress** dialog, select **Go to Models**.
@@ -134,22 +134,83 @@ Now, label the example forms with some fields:
 
 You can now train the second custom model:
 
-1. In the Azure AI Document Intelligence Studio,on the top right, select **Train**.
+1. In the Azure AI Document Intelligence Studio, on the top right, select **Train**.
 1. In the **Train a new model** dialog, in the **Model ID** textbox, type **1099FormsModel**.
 1. In the **Build mode** drop-down list, select **Template**, and then select **Train**.
 1. In the **Training in progress** dialog, select **Go to Models**.
 1. The training process can take a few minutes. Refresh the browser occasionally until both models display the **succeeded** status.
 
+## Create a custom classification model
+
+Before creating the composed model, you need to create a custom classification model. It will be used to first define which type of form a given input file is before extracting data from it.
+
+1. In Azure AI Document Intelligence Studio home page, select **Custom classification model**.
+1. Under **My Projects**, select **+ Create a project**.
+1. In the **Project name** textbox, type **Classify Forms**, and then select **Continue**.
+1. On the **Configure service resource** page, in the **Subscription** drop-down list, select your Azure subscription.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
+1. In the **Document Intelligence or Cognitive Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt;**.
+1. In the **API version** drop-down list, ensure that **2024-11-30 (4.0 General Availability)** is selected and then select **Continue**.
+1. On the **Connnect training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
+1. In the **Storage account** drop-down list, select the only storage account listed.
+1. In the **Blob container** drop-down list, select **classifyexamples**, and then select **Continue**.
+1. In the **Review and create** page, select **Create project**.
+
+## Label the custom classification model
+
+Now, label the example forms with with each type:
+
+1. In the **Label data** page, in the top-right of the page, select **+ Add type**.
+1. Type **1040Form** and then press *Enter*.
+1. Select each **f1040...** document and then select **1040Form**.
+1. In the top-right of the page, select **+ Add type**.
+1. Type **1099Form** and then press *Enter*.
+1. Select each **f1099...** document and then select **1099Form**.
+
+## Train the custom classification model
+
+You can now train the custom classification model:
+
+1. In the Azure AI Document Intelligence Studio, on the top right, select **Train**.
+1. In the **Train a new model** dialog, in the **Model ID** textbox, type **ClassifyModel**.
+1. Check the confirmation checkbox and then select **Train**.
+1. In the **Training in progress** dialog, select **Go to Models**.
+1. The training process can take a few minutes. Refresh the browser occasionally until the model displays the **succeeded** status.
+
+## Create a composed model
+
+Now that all required models are trained, let's create the composed model:
+
+1. In Azure AI Document Intelligence Studio home page, select **Custom extraction model**.
+1. Under **My Projects**, select **+ Create a project**.
+1. In the **Project name** textbox, type **Compose Model**, and then select **Continue**.
+1. On the **Configure service resource** page, in the **Subscription** drop-down list, select your Azure subscription.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
+1. In the **Document Intelligence or Cognitive Service Resource** drop-down list, select **DocumentIntelligence&lt;xxxx&gt;**.
+1. In the **API version** drop-down list, ensure that **2024-11-30 (4.0 General Availability)** is selected and then select **Continue**.
+1. On the **Connnect training data source** page, in the **Subscription** drop-down list, select your Azure subscription.
+1. In the **Resource group** drop-down list, select **DocumentIntelligenceResources&lt;xxxx&gt;**.
+1. In the **Storage account** drop-down list, select the only storage account listed.
+1. In the **Blob container** drop-down list, select **testdoc**, and then select **Continue**.
+1. In the **Review and create** page, select **Create project**.
+1. In the left pane, select **Models**.
+1. In the Models list, select both **1040Forms** and **1099Forms** and then select **Compose**.
+1. In the **Compose a new model** dialog, in the **Model ID** textbox, type **ComposeModel**.
+1. In the **Classification model** drop-down list, select **ClassifyModel**.
+1. In the **1040Form** drop-down list, select **1040FormsModel**.
+1. In the **1099Form** drop-down list, select **1099FormsModel**. Then select **Compose**.
+
 ## Use the model
 
-Now that the model is complete, let's test it with an example form:
+Now that the composed model is created, let's test it with an example form:
 
 1. Download the test form at `https://github.com/MicrosoftLearning/mslearn-ai-document-intelligence/raw/refs/heads/main/Labfiles/03-composed-model/trainingdata/TestDoc/f1040_7.pdf`.
-1. In the Azure AI Document Intelligence Studio, select the **Models** page, select the  **1040FormsModel**.
+1. In the Azure AI Document Intelligence Studio, select the **Models** page, and then select the **ComposeModel**.
 1. Select **Test**.
 1. Select **Browse for files** and then browse to the location where you downloaded the form.
 1. Select **f1040_7.pdf**, and then select **Open**.
-1. Select **Run analysis**. Azure AI Document Intelligence analyses the form by using the custom model.
+1. Select **Run analysis**. Azure AI Document Intelligence analyses the form by using the composed model.
 1. The document you analyzed is an example of the 1040 tax form. Check the **DocType** property to see if the correct custom model has been used. Also check the **FirstName**, **LastName**, **City**, and **State** values identified by the model.
 
 ## Clean up resources
