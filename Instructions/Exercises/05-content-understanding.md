@@ -10,198 +10,189 @@ In this exercise, you use Azure AI Foundry portal to create a Content Understand
 
 This exercise takes approximately **30** minutes.
 
-## Create a Content Understanding project
+## Create an Azure AI Foundry project
 
-Let's start by using the Azure AI Foundry portal to create a Content Understanding project.
+Let's start by creating an Azure AI Foundry project.
 
-1. In a web browser, open the [Azure AI Foundry portal](https://ai.azure.com) at `https://ai.azure.com` and sign in using your Azure credentials.
-
-    The home page of Azure AI Foundry portal looks similar to the following image:
+1. In a web browser, open the [Azure AI Foundry portal](https://ai.azure.com) at `https://ai.azure.com` and sign in using your Azure credentials. Close any tips or quick start panes that are opened the first time you sign in, and if necessary use the **Azure AI Foundry** logo at the top left to navigate to the home page, which looks similar to the following image:
 
     ![Screenshot of Azure AI Foundry portal.](../media/ai-foundry-portal.png)
 
-1. In the **Find it fast** section of the home page, towards the bottom, select **Content Understanding**.
-1. On the **Content Understanding** page, select the **Create new Content Understanding project** button.
-1. On the **Project overview** step, set the following properties for your project; then select **Next**:
-    - **Project name**: `travel-insurance`
-    - **Description**: `Insurance policy data extraction`
-    - **Hub**: Create a new hub
-1. On the **Create a hub** step, set the following properties and then select **Next**:
-    - **Azure AI Hub resource**: `content-understanding-hub`
-    - **Azure subscription**: *Select your Azure subscription*
-    - **Resource group**: *Create a new resource group with an appropriate name*
-    - **Location**: *Select any available location*
-    - **Azure AI services**: *Create a new Azure AI services resource with an appropriate name*
-1. On the **Storage settings** step, specify a new AI Hub storage account and select **Next**.
-1. On the **Review** page, select **Create project**. Then wait for the project and its related resources to be created.
+1. In the home page, select **+ Create project**.
+1. In the **Create a project** wizard, enter a valid name for your project, and if an existing hub is suggested, choose the option to create a new one. Then review the Azure resources that will be automatically created to support your hub and project.
+1. Select **Customize** and specify the following settings for your hub:
+    - **Hub name**: *A valid name for your hub*
+    - **Subscription**: *Your Azure subscription*
+    - **Resource group**: *Create or select a resource group*
+    - **Location**: Choose one of the following regions\*
+        - West US
+        - Sweden Central
+        - Australia East
+    - **Connect Azure AI Services or Azure OpenAI**: *Create a new AI Services resource*
+    - **Connect Azure AI Search**: *Create a new Azure AI Search resource with a unique name*
 
-    When the project is ready, it will open in the **Define schema** page.
+    > \*At the time of writing, Azure AI Content understanding is only avilable in these regions.
 
-    ![Screenshot of a new Content Understanding project.](../media/content-understanding-project.png)
+1. Select **Next** and review your configuration. Then select **Create** and wait for the process to complete.
+1. When your project is created, close any tips that are displayed and review the project page in Azure AI Foundry portal, which should look similar to the following image:
 
-## Review Azure resources
+    ![Screenshot of a Azure AI project details in Azure AI Foundry portal.](../media/ai-foundry-project.png)
 
-When you created the AI Hub and project, various resources were created in your Azure subscription to support the project.
-
-1. In a new browser tab, open the [Azure portal](https://portal.azure.com) at `https://portal.azure.com`; signing in with your Azure credentials.
-1. Browse to the resource group you created for your hub, and note the Azure resources that have been created.
-
-    ![Screenshot of Azure resources.](../media/azure-resources.png)
-
-## Define a custom schema
-
+## Create a Content Understanding analyzer
 You are going to build an analyzer that can extract information from travel insurance forms. You'll start by defining a schema based on a sample form.
 
-1. Download the [train-form.pdf](https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/train-form.pdf) sample form from `https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/train-form.pdf` and save it in a local folder.
-1. Return to the browser tab containing your Content understanding project, and on the **Define schema** page, upload the **train-form.pdf** file you just downloaded.
-1. Select the **Document analysis** template and then select **Create**.
+1. In a new browser tab, download the [invoice-1234.pdf](https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/invoice-1234.pdf) sample form from `https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/invoice-1234.pdf` and save it in a local folder.
+1. Return to the tab containing the home page for your Azure AI Foundry project; and in the navigation pane on the left, select **Content Understanding**.
+1. On the **Content Understanding** page, select the **Custom analyzer** tab at the top.
+1. On the Content Understanding custom analyzer page, select **+ Create**, and create a task with the following settings:
+    - **Task name**: Invoice analysis
+    - **Description**: Extract data from an invoice
+    - **Azure AI services connection**: *the Azure AI Services resource in your Azure AI Foundry hub*
+    - **Azure Blob Storage account**: *The default storage account in your Azure AI Foundry hub*
+1. Wait for the task to be created.
 
-    The schema editor provides a way to define the data fields to be extracted from the form, which is shown on the right. The form looks like this:
+    > **Tip**: If an error accessing storage occurs, wait a minute and try again.
 
-    ![Screenshot of a sample insurance form.](../media/train-form.png)
+1. On the **Define schema** page, upload the **invoice-1234.pdf** file you just downloaded.
+1. Select the **Invoice analysis** template and then select **Create**.
 
-    The data fields in the form consist of:
-    
-    - A collection of personal details relating to the policyholder.
-    - A collection of details related to the trip for which insurance is required.
-    - A signature and date
+    The *Invoice analysis* tenplate includes common fields that are found in invoices. You can use the schema editor to delete any of thre suggested fields thatyou don't need, and add any custom fields that you do.
 
-    We'll start by adding a field that represents the personal details as a table, in which we'll then define subfields for the individual details.
-
-1. Select **+ Add new field** and create a new field with the following values:
-    - **Field name**: `PersonalDetails`
-    - **Field description**: `Policyholder information`
-    - **Value type**: Table
-1. Select **Save Changes** (&#10004;) and note that a new subfield is automatically created.
-1. Configure the new subfield with the following values:
-    - **Field name**: `PolicyholderName`
-    - **Field description**: `Policyholder name`
-    - **Value type**: String
-    - **Method**: Extract
-1. Use the **+ Add new subfield** button to add the following additional subfields:
-
-    | Field name | Field description | Value type | Method |
-    |--|--|--|--|
-    | `StreetAddress` | `Policyholder address` | String | Extract |
-    | `City` | `Policyholder city` | String | Extract |
-    | `PostalCode` | `Policyholder post code` | String | Extract |
-    | `CountryRegion` | `Policyholder country or region` | String | Extract |
-    | `DateOfBirth` | `Policyholder birth date` | Date | Extract |
-
-1. When you have added all of the personal details subfields, use the **Back** button to return to the top level of the schema.
-1. Add a new *table* field named **`TripDetails`** to represent the details of the insured trip. Then add the following subfields to it:
-
-    | Field name | Field description | Value type | Method |
-    |--|--|--|--|
-    | `DestinationCity` | `Trip city` | String | Extract |
-    | `DestinationCountry` | `Trip country or region` | String | Extract |
-    | `DepartureDate` | `Date of departure` | Date | Extract |
-    | `ReturnDate` | `Date of return` | Date | Extract |
-
-1. Return to the top level of the schema and add the following two individual fields:
+1. In the list of suggested fields, select **BillingAddress**. This field is not needed for the invoice format you have uploaded, so use the **Delete field** (**&#128465;**) icon that appears to delete it.
+1. Now delete the following suggested fields, which aren't needed:
+    - BillingAddressRecipient
+    - CustomerAddressRecipient
+    - CustomerId
+    - CustomerTaxId
+    - DueDate
+    - InvoiceTotal
+    - PaymentTerm
+    - PreviousUnpaidBalance
+    - PurchaseOrder
+    - RemittanceAddress
+    - RemittanceAddressRecipient
+    - ServiceAddress
+    - ServiceAddressRecipient
+    - ShippingAddress
+    - ShippingAddressRecipient
+    - TotalDiscount
+    - VendorAddressRecipient
+    - VendorTaxId
+    - TaxDetails
+1. Use **+ Add new field** button to add the following fields:
 
     | Field name | Field description | Value type | Method |
     |--|--|--|--|
-    | `Signature` | `Policyholder signature` | String | Extract |
-    | `Date` | `Date of signature` | Date | Extract |
+    | `VendorPhone` | `Vendor telephone number` | String | Extract |
+    | `ShippingFee` | `Fee for shipping` | Number | Extract |
 
-1. Verify that your completed schema looks like this, and then save it.
-
-    ![Screenshot of a document schema.](../media/completed-schema.png)
+1. verify that your completed schema looks like this, and select **Save**.
+    ![Screenshot of a schema for an invoice.](../media/invoice-schema.png)
 
 1. On the **Test Analyzer** page, if analysis does not begin automatically, select **Run analysis**. Then wait for analysis to complete and review the text values on the form that are identified as matching the fields in the schema.
+1. Review the analysis results, which should look similar to this:
 
-    ![Screenshot of analyzer test results.](../media/test-analyzer.png)
+    ![Screenshot of analyzer test results.](../media/analysis-results.png)
 
-    The Content Understanding service should have correctly identified the text that corresponds to the fields in the schema. If it had not done so, you could use the **Label data** page to upload another sample form and explicitly identify the correct text for each field.
+1. View the details of the fields that were identified in the **Fields** pane, and then view the **Result** tab to see the JSON representation.
 
 ## Build and test an analyzer
 
 Now that you have trained a model to extract fields from insurance forms, you can build an analyzer to use with similar forms.
 
-1. In the navigation pane on the left, select the **Build analyzer** page.
-1. Select **+ Build analyzer** and build a new analyzer with the following properties (typed exactly as shown here):
-    - **Name**: `travel-insurance-analyzer`
-    - **Description**: `Insurance form analyzer`
+1. Select the **Build analyzer** page, and then select **+ Build analyzer** and build a new analyzer with the following properties (typed exactly as shown here):
+    - **Name**: `contoso-invoice-analyzer`
+    - **Description**: `Contoso invoice analyzer`
 1. Wait for the new analyzer to be ready (use the **Refresh** button to check).
-1. Download [test-form.pdf](https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/test-form.pdf) from `https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/test-form.pdf` and save it in a local folder.
-1. Return to the **Build analyzer** page and select the **travel-insurance-analyzer** link. The fields defined in the analyzer's schema will be displayed.
-1. In the **travel-insurance-analyzer** page, select **Test**.
-1. Use the **+ Upload test files** button to upload **test-form.pdf** and run the analysis to extract field data from the test form.
-
-    ![Screenshot of test form analysis results.](../media/test-form-results.png)
-
-1. View the **Result** tab to see the JSON-formatted results returned by the analyzer. In the next task, you'll use the Content Understanding REST API to submit a form to your analyzer and return the results in this format.
-1. Close the **travel-insurance-analyzer** page.
+1. Download [invoice-1235.pdf](https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/invoice-1235.pdf) from `https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/invoice-1235.pdf` and save it in a local folder.
+1. Return to the **Build analyzer** page and select the **contoso-invoice-analyzer** link. The fields defined in the analyzer's schema will be displayed.
+1. In the **contoso-invoice-analyzer** page, select the **Test** tab.
+1. Use the **+ Upload test files** button to upload **invoice-1235.pdf** and run the analysis to extract field data from the test form.
+1. Review the results of the test, and verify that the analyzer extracted the correct fields from the test invoice.
+1. Close the **contoso-invoice-analyzer*** page.
 
 ## Use the Content Understanding REST API
 
 Now that you've created an analyzer, you can consume it from a client application through the Content Understanding REST API.
 
-1. Switch to the browser tab containing the Azure portal (or open `https://portal.azure.com` in a new tab if you have closed it).
-1. In the resource group for your Content Understanding hub, open the **Azure AI services** resource.
-1. On the **Overview** page, in the **Keys and endpoint** section, view the **Content Understanding** tab.
+1. In the **Project details** area, note the **Project connection string**. You'll use this connection string to connect to your project in a client application.
+1. Open a new browser tab (keeping the Azure AI Foundry portal open in the existing tab). Then in the new tab, browse to the [Azure portal](https://portal.azure.com) at `https://portal.azure.com`; signing in with your Azure credentials if prompted.
 
-    ![Screenshot of the keys and endpoint for Content Udnerstanding.](../media/keys-and-endpoint.png)
+    Close any welcome notifications to see the Azure portal home page.
 
-    You will need the Content Understanding endpoint and one of the keys to connect to your analyzer from a client application.
+1. Use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment with no storage in your subscription.
 
-1. Use the **[\>_]** button to the right of the search bar at the top of the page to create a new Cloud Shell in the Azure portal, selecting a ***PowerShell*** environment. The cloud shell provides a command line interface in a pane at the bottom of the Azure portal, as shown here:
-
-    ![Acreenshot of the Azure portal with a cloud shell pane.](../media/cloud-shell.png)
+    The cloud shell provides a command-line interface in a pane at the bottom of the Azure portal. You can resize or maximize this pane to make it easier to work in.
 
     > **Note**: If you have previously created a cloud shell that uses a *Bash* environment, switch it to ***PowerShell***.
 
-1. Note that you can resize the cloud shell by dragging the separator bar at the top of the pane, or by using the **&#8212;**, **&#10530;**, and **X** icons at the top right of the pane to minimize, maximize, and close the pane. For more information about using the Azure Cloud Shell, see the [Azure Cloud Shell documentation](https://docs.microsoft.com/azure/cloud-shell/overview).
 1. In the cloud shell toolbar, in the **Settings** menu, select **Go to Classic version** (this is required to use the code editor).
 
-1. In the PowerShell pane, enter the following commands to clone the GitHub repo for this exercise:
+    **<font color="red">Ensure you've switched to the classic version of the cloud shell before continuing.</font>**
+
+1. In the cloud shell pane, enter the following commands to clone the GitHub repo containing the code files for this exercise (type the command, or copy it to the clipboard and then right-click in the command line and paste as plain text):
 
     ```
-    rm -r mslearn-ai-doc -f
-    git clone https://github.com/microsoftlearning/mslearn-ai-document-intelligence mslearn-ai-doc
+   rm -r mslearn-ai-foundry -f
+   git clone https://github.com/microsoftlearning/mslearn-ai-document-intelligence mslearn-ai-doc
     ```
 
-1. After the repo has been cloned, navigate to the **mslearn-ai-doc/Labfiles/05-content-understanding/code** folder:
+    > **Tip**: As you enter commands into the cloudshell, the output may take up a large amount of the screen buffer. You can clear the screen by entering the `cls` command to make it easier to focus on each task.
+
+1. After the repo has been cloned, navigate to the folder containing the chat application code files:
 
     ```
-    cd mslearn-ai-doc/Labfiles/05-content-understanding/code
+   cd mslearn-ai-doc/Labfiles/05-content-understanding/code
     ```
 
-1. Enter the following command to edit the **analyze_doc.py** Python code file that has been provided:
+. In the cloud shell command-line pane, enter the following command to install the libraries you'll use:
+
+    ```
+   python -m venv labenv
+   ./labenv/bin/Activate.ps1
+   pip install dotenv azure-identity azure-ai-projects
+    ```
+
+1. Enter the following command to edit the configuration file that has been provided:
+
+    ```
+   code .env
+    ```
+
+    The file is opened in a code editor.
+
+1. In the code file, replace the **YOUR_PROJECT_CONNECTION_STRING** placeholder with the connection string for your project (copied from the project **Overview** page in the Azure AI Foundry portal), and ensure that **ANALYZER** is set to the name you assigned to your analyzer (which should be *contoso-invoice-analyzer*)
+1. After you've replaced the placeholders, within the code editor, use the **CTRL+S** command to save your changes and then use the **CTRL+Q** command to close the code editor while keeping the cloud shell command line open.
+
+1. In the cloud shell command line, enter the following command to edit the **analyze_doc.py** Python code file that has been provided:
 
     ```
     code analyze_doc.py
     ```
     The Python code file is opened in a code editor:
 
-    ![Screenshot of a code editor with Python code.](../media/code-editor.png)
-
-1. In the code file, replace the **\<CONTENT_UNDERSTANDING_ENDPOINT\>** placeholder with your Content Understanding endpoint, and the **\<CONTENT_UNDERSTANDING_KEY\>** placeholder with one of the keys for your Azure AI services resource.
-
-    > **Tip**: You'll need to resize or minimize the cloud shell window to copy the endoint and key from the Azure AI services resource page in the Azure portal - be careful not to *close* the cloud shell (or you'll need to repeat the steps above)
-
-1. After you've replaced the placeholders, use the **CTRL+S** command to save your changes and then review the completed code, which:
-    - Submits an HTTP POST request to your Content Understanding endpoint, instructing the **travel-insurance-analyzer** to analyze a form based on its URL.
+1. Review the code, which:
+    - Identifies the invoice file to be analyzed, with a default of **invoice-1236.pdf**.
+    - Retrieves the endpoint and key for your Azure AI Services resource from the project.
+    - Submits an HTTP POST request to your Content Understanding endpoint, instructing the to analyze the image.
     - Checks the response from the POST operation to retrieve an ID for the analysis operation.
     - Repeatedly submits an HTTP GET request to your Content Understanding service until the operation is no longer running.
-    - If the operation has succeeded, displays the JSON response.
+    - If the operation has succeeded, parses the JSON response and displays the values retrieved
 1. Use the **CTRL+Q** command to close the code editor while keeping the cloud shell command line open.
-1. In the cloud shell command line pane, enter the following command to install the Python **requests** library (which is used in the code):
-
-    ```
-    pip install requests
-    ```
-
-1. After the library is installed, in the cloud shell command line pane, enter the following command to run the Python code:
+1. In the cloud shell command line pane, enter the following command to run the Python code:
 
     ```
     python analyze_doc.py
     ```
 
-1. Review the output from the program, which includes the JSON results of the document analysis.
+1. Review the output from the program.
+1. Use the following command to run the program with a different invoice:
 
-    > **Tip**: The screen buffer in the cloud shell console may not be large enough to show the entire output. If you want to review the entire output, run the program using the command `python analyze_doc.py > output.txt`. Then, when the program finishes, use the command `code output.txt` to open the output in a code editor.
+    ```
+    python analyze_doc.py invoice-1235.pdf
+    ```
+
+    > **Tip**: There are three invoice files in the code folder that you can use (invoice-1234.pdf, invoice-1235.pdf, and invoice-1236.pdf) 
 
 ## Clean up
 
