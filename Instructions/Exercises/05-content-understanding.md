@@ -139,13 +139,14 @@ Now that you've created an analyzer, you can consume it from a client applicatio
 
     > **Tip**: As you enter commands into the cloudshell, the output may take up a large amount of the screen buffer. You can clear the screen by entering the `cls` command to make it easier to focus on each task.
 
-1. After the repo has been cloned, navigate to the folder containing the chat application code files:
+1. After the repo has been cloned, navigate to the folder containing the code files for your app:
 
     ```
    cd mslearn-ai-doc/Labfiles/05-content-understanding/code
+   ls -a -l
     ```
 
-. In the cloud shell command-line pane, enter the following command to install the libraries you'll use:
+1. In the cloud shell command-line pane, enter the following command to install the libraries you'll use:
 
     ```
    python -m venv labenv
@@ -167,7 +168,7 @@ Now that you've created an analyzer, you can consume it from a client applicatio
 1. In the cloud shell command line, enter the following command to edit the **analyze_doc.py** Python code file that has been provided:
 
     ```
-    code analyze_doc.py
+    code analyze_invoice.py
     ```
     The Python code file is opened in a code editor:
 
@@ -182,14 +183,14 @@ Now that you've created an analyzer, you can consume it from a client applicatio
 1. In the cloud shell command line pane, enter the following command to run the Python code:
 
     ```
-    python analyze_doc.py
+    python analyze_invoice.py invoice-1236.pdf
     ```
 
 1. Review the output from the program.
 1. Use the following command to run the program with a different invoice:
 
     ```
-    python analyze_doc.py invoice-1235.pdf
+    python analyze_invoice.py invoice-1235.pdf
     ```
 
     > **Tip**: There are three invoice files in the code folder that you can use (invoice-1234.pdf, invoice-1235.pdf, and invoice-1236.pdf) 

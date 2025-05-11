@@ -20,7 +20,7 @@ def main():
     # Get invoice
     invoice_file = 'invoice-1236.pdf'
     if len(sys.argv) > 1:
-        image_file = sys.argv[1]
+        invoice_file = sys.argv[1]
 
     try:
         global speech_config
