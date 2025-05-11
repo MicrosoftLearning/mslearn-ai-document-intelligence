@@ -165,7 +165,7 @@ Now that you've created an analyzer, you can consume it from a client applicatio
 1. In the code file, replace the **YOUR_PROJECT_CONNECTION_STRING** placeholder with the connection string for your project (copied from the project **Overview** page in the Azure AI Foundry portal), and ensure that **ANALYZER** is set to the name you assigned to your analyzer (which should be *contoso-invoice-analyzer*)
 1. After you've replaced the placeholders, within the code editor, use the **CTRL+S** command to save your changes and then use the **CTRL+Q** command to close the code editor while keeping the cloud shell command line open.
 
-1. In the cloud shell command line, enter the following command to edit the **analyze_doc.py** Python code file that has been provided:
+1. In the cloud shell command line, enter the following command to edit the **analyze_invoice.py** Python code file that has been provided:
 
     ```
     code analyze_invoice.py
