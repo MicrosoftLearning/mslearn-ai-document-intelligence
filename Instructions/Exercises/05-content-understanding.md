@@ -6,7 +6,7 @@ lab:
 
 # Analyze content with Azure AI Content Understanding
 
-In this exercise, you use Azure AI Foundry portal to create a Content Understanding project that can extract information from travel insurance policy forms. You'll then test your content analyzer in Azure AI Foundry Portal and consume it through the Content Understanding REST interface.
+In this exercise, you use Azure AI Foundry portal to create a Content Understanding project that can extract information from invoices. You'll then test your content analyzer in Azure AI Foundry Portal and consume it through the Content Understanding REST interface.
 
 This exercise takes approximately **30** minutes.
 
@@ -39,7 +39,8 @@ Let's start by creating an Azure AI Foundry project.
     ![Screenshot of a Azure AI project details in Azure AI Foundry portal.](../media/ai-foundry-project.png)
 
 ## Create a Content Understanding analyzer
-You are going to build an analyzer that can extract information from travel insurance forms. You'll start by defining a schema based on a sample form.
+
+You are going to build an analyzer that can extract information from invoices. You'll start by defining a schema based on a sample invoice.
 
 1. In a new browser tab, download the [invoice-1234.pdf](https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/invoice-1234.pdf) sample form from `https://github.com/microsoftlearning/mslearn-ai-document-intelligence/raw/main/Labfiles/05-content-understanding/forms/invoice-1234.pdf` and save it in a local folder.
 1. Return to the tab containing the home page for your Azure AI Foundry project; and in the navigation pane on the left, select **Content Understanding**.
@@ -89,7 +90,7 @@ You are going to build an analyzer that can extract information from travel insu
 1. verify that your completed schema looks like this, and select **Save**.
     ![Screenshot of a schema for an invoice.](../media/invoice-schema.png)
 
-1. On the **Test Analyzer** page, if analysis does not begin automatically, select **Run analysis**. Then wait for analysis to complete and review the text values on the form that are identified as matching the fields in the schema.
+1. On the **Test Analyzer** page, if analysis does not begin automatically, select **Run analysis**. Then wait for analysis to complete and review the text values on the invoice that are identified as matching the fields in the schema.
 1. Review the analysis results, which should look similar to this:
 
     ![Screenshot of analyzer test results.](../media/analysis-results.png)
@@ -98,7 +99,7 @@ You are going to build an analyzer that can extract information from travel insu
 
 ## Build and test an analyzer
 
-Now that you have trained a model to extract fields from insurance forms, you can build an analyzer to use with similar forms.
+Now that you have trained a model to extract fields from invoices, you can build an analyzer to use with similar forms.
 
 1. Select the **Build analyzer** page, and then select **+ Build analyzer** and build a new analyzer with the following properties (typed exactly as shown here):
     - **Name**: `contoso-invoice-analyzer`
