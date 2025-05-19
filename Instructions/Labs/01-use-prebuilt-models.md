@@ -14,7 +14,7 @@ Let's start by creating an Azure AI Foundry project.
 
 1. In a web browser, open the [Azure AI Foundry portal](https://ai.azure.com) at `https://ai.azure.com` and sign in using your Azure credentials. Close any tips or quick start panes that are opened the first time you sign in, and if necessary use the **Azure AI Foundry** logo at the top left to navigate to the home page, which looks similar to the following image:
 
-    ![Screenshot of Azure AI Foundry portal.](./media/ai-foundry-home.png)
+    ![Screenshot of Azure AI Foundry portal.](../media/ai-foundry-home.png)
 
 1. In the home page, select **+ Create project**.
 1. In the **Create a project** wizard, enter a suitable project name for (for example, `my-ai-project`) then review the Azure resources that will be automatically created to support your project.
@@ -29,7 +29,7 @@ Let's start by creating an Azure AI Foundry project.
 1. Select **Next** and review your configuration. Then select **Create** and wait for the process to complete.
 1. When your project is created, close any tips that are displayed and review the project page in Azure AI Foundry portal, which should look similar to the following image:
 
-    ![Screenshot of a Azure AI project details in Azure AI Foundry portal.](./media/ai-foundry-project.png)
+    ![Screenshot of a Azure AI project details in Azure AI Foundry portal.](../media/ai-foundry-project.png)
 
 ## Use the Read model
 
@@ -43,7 +43,7 @@ Let's start by using the **Azure AI Foundry** portal and the Read model to analy
 
 1. In the list of documents on the left, select **read-german.pdf**.
 
-    ![Screenshot showing the Read page in Azure AI Document Intelligence Studio.](./media/read-german-sample.png#lightbox)
+    ![Screenshot showing the Read page in Azure AI Document Intelligence Studio.](../media/read-german-sample.png#lightbox)
 
 1. At the top toolbar, select **Analyze options**, then enable the **Language** check-box (under **Optional detection**) in the **Analyze options** pane and click on **Save**. 
 1. At the top-left, select **Run Analysis**.
@@ -51,7 +51,7 @@ Let's start by using the **Azure AI Foundry** portal and the Read model to analy
 1. Select the **Result** tab. This tab displays the extracted JSON code. 
 1. Scroll to the bottom of the JSON code in the **Result** tab. Notice that the read model has detected the language of each span indicated by `locale`. Most spans are in German (language code `de`) but you can find other language codes in the spans (e.g. English - language code `en` - in one of the first span).
 
-    ![Screenshot showing the detection of language for two spans in the results from the read model in Azure AI Document Intelligence Studio.](./media/language-detection.png#lightbox)
+    ![Screenshot showing the detection of language for two spans in the results from the read model in Azure AI Document Intelligence Studio.](../media/language-detection.png#lightbox)
 
 ## Prepare to develop an app in Cloud Shell
 
@@ -81,7 +81,7 @@ Applications for both C# and Python have been provided, as well as a sample pdf 
 
 1. Examine the following invoice and note some of its fields and values. This is the invoice that your code will analyze.
 
-    ![Screenshot showing a sample invoice document.](./media/sample-invoice.png#lightbox)
+    ![Screenshot showing a sample invoice document.](../media/sample-invoice.png#lightbox)
 
     ***Now follow the steps for your chosen programming language.***
 
