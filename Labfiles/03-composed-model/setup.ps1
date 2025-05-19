@@ -27,12 +27,13 @@ az storage cors add --methods DELETE GET HEAD MERGE OPTIONS POST PUT --origins *
 Write-Output "Creating containers for the sample forms."
 az storage container create --account-name $storageAccName --name 1040examples --connection-string $connectionString
 az storage container create --account-name $storageAccName --name 1099examples --connection-string $connectionString
+az storage container create --account-name $storageAccName --name classifyexamples --connection-string $connectionString
 az storage container create --account-name $storageAccName --name testdoc --connection-string $connectionString
-
 # Upload the sample data
 Write-Output "Uploading the sample forms to the storage account."
 az storage blob upload-batch -d 1040examples --account-name $storageAccName --connection-string $connectionString -s "trainingdata/1040examples" --pattern *.pdf
 az storage blob upload-batch -d 1099examples --account-name $storageAccName --connection-string $connectionString -s "trainingdata/1099examples" --pattern *.pdf
+az storage blob upload-batch -d testdoc --account-name $storageAccName --connection-string $connectionString -s "trainingdata/ClassifyExamples" --pattern *.pdf
 az storage blob upload-batch -d testdoc --account-name $storageAccName --connection-string $connectionString -s "trainingdata/TestDoc" --pattern *.pdf
 Write-Output "Uploaded sample data."
 
