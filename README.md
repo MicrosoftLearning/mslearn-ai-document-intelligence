@@ -1,2 +1,1 @@
-# mslearn-document-intelligence
-Lab files for Azure AI Document Intelligence modules
+> **NOTE**: This repo is being archived, and is no longer maintained. Please visit the [Develop AI information extraction solutions](https://learn.microsoft.com/training/paths/ai-extract-information/) learning path and [associated lab repo](https://github.com/MicrosoftLearning/mslearn-ai-information-extraction), or [Azure AI Foundry documentation](https://learn.microsoft.com/azure/ai-foundry/)
